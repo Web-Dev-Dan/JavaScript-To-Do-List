@@ -71,11 +71,3 @@ html, body {
 .toggle--box:hover {
     cursor: pointer;
 }
-
-
-
-
-/* Media Queries */
-@media only screen and (max-width: 40rem) {
-    
-}
