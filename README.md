@@ -6,4 +6,4 @@
 
 ✍️ There will also be a sidebar with further options: a feature logging the number of pending tasks and completed tasks, as well as displaying the most recently added to-do item and a progress bar with 'points' earned from completing each task.
 
-👀 DEMO: You can view the progress on this project here.
+👀 DEMO: You can view the progress on this project [here](https://web-dev-dan.github.io/JavaScript-To-Do-List/).
