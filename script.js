@@ -9,12 +9,16 @@ moonIcon.addEventListener('click', toggleLightMode);
 
 function toggleDarkMode() {
     toggleInner.style.transform = 'translateY(-50%)';
-    root.style.setProperty('--color-light', '#333333');
-    root.style.setProperty('--color-dark', '#ffffff');
+    root.style.setProperty('--color-white', '#333333');
+    root.style.setProperty('--color-black', '#ffffff');
+    root.style.setProperty('--color-dark', '#f1f1f1');
+    root.style.setProperty('--color-light', '#444444');
 }
 
 function toggleLightMode() {
     toggleInner.style.transform = 'translateY(0)';
-    root.style.setProperty('--color-light', '#ffffff');
-    root.style.setProperty('--color-dark', '#808080');
+    root.style.setProperty('--color-white', '#ffffff');
+    root.style.setProperty('--color-black', '#333333');
+    root.style.setProperty('--color-dark', '#444444');
+    root.style.setProperty('--color-light', '#f1f1f1');
 }
