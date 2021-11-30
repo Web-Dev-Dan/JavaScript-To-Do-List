@@ -1,9 +1,10 @@
 /* Variables */
 :root {
     --font-primary: sans-serif;
-    --color-light: #ffffff;
+    --color-white: #ffffff;
     --color-black: #333333;
-    --color-dark: #808080;
+    --color-light: #f1f1f1;
+    --color-dark: #444444;
     --flex-center:
 }
 
@@ -14,22 +15,21 @@
     box-sizing: border-box;
 }
 
-
-
 html, body {
+    background-color: var(--color-light);
     font-family: var(--font-primary);
     color: var(--color-dark);
     font-size: 62.5%;
 }
 
 .container {
-    background-color: #f1f1f1;
+    background-color: var(--color-light);
     width: 100vw;
 }
 
 /* Navigation */
 .nav {
-    background-color: var(--color-light);
+    background-color: var(--color-white);
     width: 100%;
     height: 10rem;
     padding: 0 5rem;
@@ -70,4 +70,28 @@ html, body {
 
 .toggle--box:hover {
     cursor: pointer;
+}
+
+/* To-Do List */
+.container {
+    width: 100vw;
+    height: calc(100vh - 10rem);
+    padding: 4rem;
+}
+
+.list {
+    background-color: var(--color-white);
+    width: 100%;
+    max-width: 54rem;
+    height: 30rem;
+    border-radius: .5rem;
+    margin: 0 auto;
+}
+
+
+/* Media Queries */
+@media only screen and (max-width: 40rem) {
+    .nav {
+        padding: 0 3rem;
+    }
 }
