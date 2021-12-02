@@ -1,11 +1,13 @@
 /* Variables */
 :root {
     --font-primary: sans-serif;
+
     --color-white: #ffffff;
     --color-black: #333333;
     --color-light: #f1f1f1;
     --color-dark: #444444;
-    --flex-center:
+
+    --color-primary: rgb(68, 218, 128);
 }
 
 /* Universal */
@@ -22,6 +24,10 @@ html, body {
     font-size: 62.5%;
 }
 
+.emphasis {
+    font-weight: 600;
+}
+
 .container {
     background-color: var(--color-light);
     width: 100vw;
@@ -33,6 +39,7 @@ html, body {
     width: 100%;
     height: 10rem;
     padding: 0 5rem;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     position: sticky;
     top: 0;
     left: 0;
@@ -46,6 +53,13 @@ html, body {
     color: var(--color-dark);
     font-size: 3rem;
     font-weight: 100;
+}
+
+.options {
+    width: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .toggle {
@@ -71,6 +85,19 @@ html, body {
     cursor: pointer;
 }
 
+.settings {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings:hover {
+    cursor: pointer;
+}
+
 /* To-Do List */
 .container {
     width: 100vw;
@@ -82,9 +109,36 @@ html, body {
     background-color: var(--color-white);
     width: 100%;
     max-width: 54rem;
-    height: 30rem;
-    border-radius: .5rem;
     margin: 0 auto;
+    padding: 6rem;
+    border-radius: .5rem;
+}
+
+.list-header {
+    color: var(--color-primary);
+    font-size: 3.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+}
+
+.summary {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    width: 80%;
+    margin: 5rem auto;
+    padding: 3rem;
+}
+
+.summary p {
+    font-size: 1.6rem;
+    font-weight: 100;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.summary p:first-child {
+    margin-bottom: 1rem;
 }
 
 
@@ -92,5 +146,16 @@ html, body {
 @media only screen and (max-width: 40rem) {
     .nav {
         padding: 0 3rem;
+    }
+    .options {
+        width: 8rem;
+    }
+    .container {
+        padding: 0;
+    }
+    .list {
+        height: 100%;
+        min-width: 100vw;
+        padding: 3rem;
     }
 }
