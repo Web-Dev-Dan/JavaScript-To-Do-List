@@ -1,4 +1,4 @@
-// Toggle Light/Dark
+// ---------- Toggle Light/Dark --------------
 const sunIcon = document.getElementById('sunIcon');
 const moonIcon = document.getElementById('moonIcon');
 const toggleInner = document.querySelector('.toggle-inner');
@@ -22,3 +22,14 @@ function toggleLightMode() {
     root.style.setProperty('--color-dark', '#444444');
     root.style.setProperty('--color-light', '#f1f1f1');
 }
+
+
+// ---------- To-Do List --------------
+let listName = 'My To-Do List';
+let userName = 'User';
+let listedTodos = 0;
+let completedTodos = 0;
+
+const listNameText = document.getElementById('listNameText');
+
+listNameText.textContent = listName;
