@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <!-- Modal -->
+    <div id="modalBackground" class="modal-background"></div>
 
     <!-- Navigation -->
     <nav class="nav">
@@ -40,10 +42,11 @@
     <!-- To-Do List -->
     <div class="container">
         <main class="list">
-            <h1 id="listNameText" class="list-header">My To-Do List</h1>
+            <h1 id="listNameText" class="list-header">To-Do List</h1>
             <div class="summary">
-                <p>Hello, <span class="emphasis">Daniel</span>!</p>
+                <p>Hello, <span class="emphasis"><span id="userNameText">User</span></span>!</p>
                 <p>There are currently <span class="emphasis">0 items</span> pending on your list.</p>
+                <p>You have <span class="emphasis">0 prioritized</span> items.</p>
             </div>
         </main>
     </div>
