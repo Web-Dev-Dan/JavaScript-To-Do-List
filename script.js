@@ -24,12 +24,32 @@ function toggleLightMode() {
 }
 
 
+// Modal
+const modalBackground = document.getElementById('modalBackground');
+const optionsBtn = document.querySelector('.settings');
+
+optionsBtn.addEventListener('click', toggleModal);
+modalBackground.addEventListener('click', toggleModal);
+
+function toggleModal() {
+    modalBackground.classList.toggle('modal-shown');
+}
+
+
 // ---------- To-Do List --------------
-let listName = 'My To-Do List';
-let userName = 'User';
+let listName = 'To-Do List';
+let userName = 'Daniel';
 let listedTodos = 0;
 let completedTodos = 0;
+let prioritizedTodos = 0;
 
-const listNameText = document.getElementById('listNameText');
+const listNameText = document.querySelectorAll('#listNameText');
+const userNameText = document.querySelectorAll('#userNameText');
 
-listNameText.textContent = listName;
+listNameText.forEach((list) => {
+    list.textContent = listName;
+});
+
+userNameText.forEach((name) => {
+    name.textContent = userName;
+});
