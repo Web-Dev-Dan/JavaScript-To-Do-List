@@ -110,8 +110,9 @@ html, body {
     width: 100%;
     max-width: 54rem;
     margin: 0 auto;
-    padding: 6rem;
+    padding: 5rem;
     border-radius: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .list-header {
@@ -137,8 +138,26 @@ html, body {
     line-height: 1.5;
 }
 
-.summary p:first-child {
-    margin-bottom: 1rem;
+.summary p:not(:first-child) {
+    margin-top: 1rem;
+}
+
+
+/* Modal */
+.modal-background {
+    background-color: #333333;
+    opacity: .9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 100;
+    display: none;
+}
+
+.modal-shown {
+    display: flex;
 }
 
 
