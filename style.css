@@ -101,7 +101,6 @@ html, body {
 /* To-Do List */
 .container {
     width: 100vw;
-    height: calc(100vh - 10rem);
     padding: 4rem;
 }
 
@@ -123,11 +122,13 @@ html, body {
     letter-spacing: .2rem;
 }
 
+/* Summary */
 .summary {
     background-color: var(--color-light);
     color: var(--color-dark);
     width: 80%;
     margin: 5rem auto;
+    margin-bottom: 3rem;
     padding: 3rem;
 }
 
@@ -140,6 +141,24 @@ html, body {
 
 .summary p:not(:first-child) {
     margin-top: 1rem;
+}
+
+/* Empty List Display */
+.empty-list-display {
+    width: 80%;
+    height: 10rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-list-display p {
+    font-size: 1.8rem;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.5;
+    opacity: .2;
 }
 
 
@@ -188,6 +207,8 @@ html, body {
 .side-menu-inner h2 {
     font-size: 3rem;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
 }
 
 .side-menu-content {
@@ -215,7 +236,7 @@ html, body {
         padding: 0;
     }
     .list {
-        height: 100%;
+        min-height: calc(100vh - 10rem);
         min-width: 100vw;
         padding: 3rem;
     }
