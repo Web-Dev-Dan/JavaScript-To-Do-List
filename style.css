@@ -8,6 +8,7 @@
     --color-dark: #444444;
 
     --color-primary: rgb(68, 218, 128);
+    --color-placeholder: #acacac;
 }
 
 /* Universal */
@@ -28,6 +29,54 @@ html, body {
     font-weight: 600;
 }
 
+.btn {
+    font-family: var(--font-primary);
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    width: 10rem;
+    padding: 0 2rem;
+    border: none;
+    outline: none;
+    transition: all .3s;
+}
+
+.btn:hover {
+    cursor: pointer;
+    transform: scale(110%);
+    filter: brightness(95%);
+}
+
+.btn:active {
+    transform: scale(105%);
+    filter: brightness(90%);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.input {
+    /* border: .1rem solid; */
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 0 3rem;
+    border: .1rem solid transparent;
+    border: none;
+    outline: none;
+}
+
+.input:focus {
+    border: .1rem solid var(--color-dark);
+}
+
+.input::placeholder {
+    color: var(--color-placeholder);
+}
+
 .container {
     background-color: var(--color-light);
     width: 100vw;
@@ -39,6 +88,7 @@ html, body {
     width: 100%;
     height: 10rem;
     padding: 0 5rem;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     position: sticky;
     top: 0;
     left: 0;
@@ -143,9 +193,24 @@ html, body {
     margin-top: 1rem;
 }
 
+/* Add Button */
+.add-todo-container {
+    width: 80%;
+    height: 5rem;
+    margin: 0 auto 3rem auto;
+    display: flex;
+}
+
+.add-todo-container input {
+    flex: 1;
+}
+
+
+
 /* Empty List Display */
 .empty-list-display {
     width: 80%;
+    /* height: 12rem; */
     margin: 0 auto;
     padding: 4rem 3rem;
     display: flex;
