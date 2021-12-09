@@ -2,13 +2,14 @@
 :root {
     --font-primary: sans-serif;
 
+    --color-placeholder: #acacac;
+
     --color-white: #ffffff;
     --color-black: #333333;
     --color-light: #f1f1f1;
     --color-dark: #444444;
 
     --color-primary: rgb(68, 218, 128);
-    --color-placeholder: #acacac;
 }
 
 /* Universal */
@@ -32,9 +33,10 @@ html, body {
 .btn {
     font-family: var(--font-primary);
     font-size: 1.6rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .1rem;
-    width: 10rem;
+    min-width: 10rem;
     padding: 0 2rem;
     border: none;
     outline: none;
@@ -54,7 +56,7 @@ html, body {
 
 .btn-primary {
     background-color: var(--color-primary);
-    color: var(--color-white);
+    color: #fff;
 }
 
 .input {
@@ -62,7 +64,6 @@ html, body {
     background-color: var(--color-light);
     color: var(--color-dark);
     font-size: 1.8rem;
-    text-align: center;
     padding: 0 3rem;
     border: .1rem solid transparent;
     border: none;
@@ -75,6 +76,7 @@ html, body {
 
 .input::placeholder {
     color: var(--color-placeholder);
+    text-align: center;
 }
 
 .container {
@@ -88,7 +90,6 @@ html, body {
     width: 100%;
     height: 10rem;
     padding: 0 5rem;
-    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     position: sticky;
     top: 0;
     left: 0;
@@ -205,7 +206,33 @@ html, body {
     flex: 1;
 }
 
+/* Add Button for Small Screens */
+.add-todo-container-small {
+    width: 5rem;
+    height: 5rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
 
+.add-todo-container-small .btn-circle {
+    color: white;
+    font-size: 2.4rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    transition: all .3s;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.add-todo-container-small .btn-circle:active {
+    filter: brightness(90%);
+}
 
 /* Empty List Display */
 .empty-list-display {
@@ -251,7 +278,7 @@ html, body {
 }
 
 .side-menu {
-    background-color: var(--color-light);
+    background-color: var(--color-white);
     position: absolute;
     top: 0;
     right: 0;
@@ -321,4 +348,13 @@ html, body {
     }
     .list-header {
         margin-top: 0;
+}
+
+@media only screen and (max-width: 30rem) {
+    .add-todo-container {
+        display: none;
+    }
+    .add-todo-container-small {
+        display: flex;
+    }
 }
