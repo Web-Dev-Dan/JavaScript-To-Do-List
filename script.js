@@ -25,6 +25,7 @@ function toggleLightMode() {
 
 
 // Modal
+const body = document.getElementById('body');
 const modalBackground = document.getElementById('modalBackground');
 const sideMenu = document.getElementById('sideMenu');
 const optionsBtn = document.querySelector('.settings');
@@ -35,8 +36,10 @@ modalBackground.addEventListener('click', toggleModal);
 closeOptionsBtn.addEventListener('click', toggleModal);
 
 function toggleModal() {
+    window.scrollTo(0, 0);
     modalBackground.classList.toggle('modal-shown');
     sideMenu.classList.toggle('modal-shown');
+    body.classList.toggle('body-fixed');
 }
 
 
