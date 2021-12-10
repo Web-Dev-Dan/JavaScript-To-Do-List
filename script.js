@@ -1,3 +1,16 @@
+// ---------- Date --------------
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const newDate = new Date();
+const day = newDate.getDay();
+const date = newDate.getDate();
+const month = newDate.getMonth();
+const year = newDate.getFullYear();
+
+const todaysFullDate = `${weekdays[day]} ${date} ${months[month]}, ${year}`;
+
+
 // ---------- Toggle Light/Dark --------------
 const sunIcon = document.getElementById('sunIcon');
 const moonIcon = document.getElementById('moonIcon');
@@ -24,7 +37,7 @@ function toggleLightMode() {
 }
 
 
-// Modal
+// Toggle Modal
 const body = document.getElementById('body');
 const modalBackground = document.getElementById('modalBackground');
 const sideMenu = document.getElementById('sideMenu');
