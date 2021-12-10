@@ -51,14 +51,17 @@
     <!-- To-Do List -->
     <div class="container">
         <main class="list">
+
             <!-- List Name -->
             <h1 id="listNameText" class="list-header">To-Do List</h1>
+
             <!-- List Summary -->
             <div class="summary">
                 <p>Hello, <span class="emphasis"><span id="userNameText">User</span></span>!</p>
                 <p>There are currently <span class="emphasis">0 items</span> pending on your list.</p>
                 <p>You have <span class="emphasis">0 prioritised</span> items.</p>
             </div>
+
             <!-- Add Button -->
             <div class="add-todo-container">
                 <input class="input" type="text" placeholder="Add a to-do...">
@@ -81,6 +84,84 @@
 
             <!-- List Item Container -->
             <div class="item-container">
+
+                <!-- Filter Items -->
+                <div class="filter-items filter-items-main">
+                    <div class="filter-box filter-box__icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="filter-box filter-box__small filter-active">All</div>
+                    <div class="filter-box filter-box__text">Complete</div>
+                    <div class="filter-box filter-box__text">Incomplete</div>
+                    <div class="filter-box filter-box__icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Filter Items (Small Screen) -->
+                <div class="filter-items filter-items-small">
+                    <div class="filter-box filter-box__icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="filter-box filter-box__small filter-active">All</div>
+                    <div class="filter-box filter-box__icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div class="filter-box filter-box__icon">
+                        <i class="fas fa-hourglass"></i>
+                    </div>
+                    <div class="filter-box filter-box__icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- To-Do Item Container -->
+                <div class="to-do-item-container">
+
+                    <!-- To-Do Item -->
+                    <div class="to-do-item">
+                        <div class="to-do-item__checkbox">
+                            <i class="far fa-circle fa-2x"></i>
+                        </div>
+                        <div class="to-do-item__content">
+                            <div class="content-text">
+                                <p class="content-text__to-do">Finish portfolio</p>
+                                <p class="content-text__date">Added Thursday 4 November, 2021</p>
+                            </div>
+                        </div>
+                        <div class="to-do-item__priority">
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="to-do-item__edit">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="to-do-item__remove">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+
+                    <div class="to-do-item">
+                        <div class="to-do-item__checkbox">
+                            <i class="far fa-circle fa-2x"></i>
+                        </div>
+                        <div class="to-do-item__content">
+                            <div class="content-text">
+                                <p class="content-text__to-do">Finish portfolio</p>
+                                <p class="content-text__date">Added Thursday 4 November, 2021</p>
+                            </div>
+                        </div>
+                        <div class="to-do-item__priority">
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="to-do-item__edit">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="to-do-item__remove">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
         </main>
