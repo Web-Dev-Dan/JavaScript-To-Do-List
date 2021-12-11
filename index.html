@@ -71,8 +71,8 @@
 
             <!-- Add Button -->
             <div class="add-todo-container">
-                <input class="input" type="text" placeholder="Add a to-do...">
-                <button class="btn btn-primary">Add <i class="fas fa-plus"></i>
+                <input id="addItemInput" class="input" type="text" placeholder="Add a to-do...">
+                <button id="addItemBtn" class="btn btn-primary">Add <i class="fas fa-plus"></i>
                 </button>
             </div>
 
@@ -94,7 +94,7 @@
 
                 <!-- Filter Items -->
                 <div class="filter-items filter-items-main">
-                    <div class="filter-box filter-box__icon">
+                    <div id="toggleListOrderBtn" class="filter-box filter-box__icon">
                         <i class="fas fa-exchange-alt"></i>
                     </div>
                     <div class="filter-box filter-box__small filter-active">All</div>
@@ -124,51 +124,6 @@
 
                 <!-- To-Do Item Container -->
                 <div class="to-do-item-container">
-
-                    <!-- To-Do Item -->
-                    <div class="to-do-item">
-                        <div class="to-do-item__checkbox">
-                            <i class="far fa-circle fa-2x"></i>
-                        </div>
-                        <div class="to-do-item__content">
-                            <div class="content-text">
-                                <p class="content-text__to-do">Read a book</p>
-                                <p class="content-text__date">Added Friday 10 December, 2021</p>
-                            </div>
-                        </div>
-
-                        <div class="to-do-item__priority">
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="to-do-item__edit">
-                            <i class="fas fa-edit"></i>
-                        </div>
-                        <div class="to-do-item__remove">
-                            <i class="fas fa-trash-alt"></i>
-                        </div>
-
-                    </div>
-
-                    <div class="to-do-item">
-                        <div class="to-do-item__checkbox">
-                            <i class="far fa-circle fa-2x"></i>
-                        </div>
-                        <div class="to-do-item__content">
-                            <div class="content-text">
-                                <p class="content-text__to-do">Go to the gym</p>
-                                <p class="content-text__date">Added Friday 10 December, 2021</p>
-                            </div>
-                        </div>
-                        <div class="to-do-item__priority">
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="to-do-item__edit">
-                            <i class="fas fa-edit"></i>
-                        </div>
-                        <div class="to-do-item__remove">
-                            <i class="fas fa-trash-alt"></i>
-                        </div>
-                    </div>
 
                 </div>
 
