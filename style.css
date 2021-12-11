@@ -247,7 +247,7 @@ html, body {
     border: .1rem solid var(--color-dark);
     border-style: dashed;
     border-radius: .5rem;
-    display: none;
+    /* display: none; */
 }
 
 .empty-list-display i {
@@ -265,7 +265,10 @@ html, body {
 }
 
 .item-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    display: none;
 }
 
 /* Filter Items */
@@ -336,8 +339,14 @@ html, body {
 
 /* To-Do Item Container */
 .to-do-item-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 0 auto;
+}
+
+.reverse-order {
+    flex-direction: column-reverse;
 }
 
 .to-do-item {
@@ -356,9 +365,9 @@ html, body {
     z-index: 20;
 }
 
-.to-do-item:not(:first-child) {
+/* .to-do-item:not(:first-child) {
     margin-top: 1rem;
-}
+} */
 
 .to-do-item i {
     color: var(--color-gray);
@@ -370,6 +379,15 @@ html, body {
 .to-do-item i:hover {
     cursor: pointer;
     filter: brightness(90%);
+}
+
+.item-content-main {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.item-content-icons {
+    display: flex;
 }
 
 .to-do-item__checkbox i {
@@ -511,5 +529,25 @@ html, body {
     }
     .filter-items-small {
         display: flex;
+    }
+    .to-do-item {
+        flex-direction: column;
+    }
+    .to-do-item:hover {
+        transform: scale(100%);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        z-index: default;
+    }
+    .item-content-icons {
+        width: 100%;
+        margin: .5rem 0 0 5rem;
+        margin-top: .5rem;
+        justify-content: center;
+    }
+    .to-do-item i {
+        font-size: 1.5rem;
+    }
+    .to-do-item__checkbox i {
+        font-size: 2.4rem;
     }
 }
