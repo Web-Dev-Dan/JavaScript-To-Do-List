@@ -15,6 +15,7 @@
 <body id="body">
     <!-- Modal -->
     <div id="modalBackground" class="modal-background"></div>
+    <!-- Settings Modal -->
     <aside id="sideMenu" class="side-menu">
         <i class="close-side-menu fas fa-times"></i>
         <div class="side-menu-inner">
@@ -24,6 +25,10 @@
             </div>
         </div>
     </aside>
+    <!-- 'Add' Modal (Small Screens) -->
+    <div class="modal-container">
+
+    </div>
 
     <!-- Navigation -->
     <nav class="nav">
@@ -58,8 +63,10 @@
             <!-- List Summary -->
             <div class="summary">
                 <p>Hello, <span class="emphasis"><span id="userNameText">User</span></span>!</p>
-                <p>There are currently <span class="emphasis">0 items</span> pending on your list.</p>
-                <p>You have <span class="emphasis">0 prioritised</span> items.</p>
+                <p>There <span id="listedTodosInlineText">are</span> currently <span id="listedTodosText"
+                        class="emphasis">0 items</span> pending on your list.
+                </p>
+                <p>You have <span id="prioritisedText" class="emphasis">0 prioritised items</span>.</p>
             </div>
 
             <!-- Add Button -->
@@ -125,10 +132,11 @@
                         </div>
                         <div class="to-do-item__content">
                             <div class="content-text">
-                                <p class="content-text__to-do">Finish portfolio</p>
+                                <p class="content-text__to-do">Read a book</p>
                                 <p class="content-text__date">Added Friday 10 December, 2021</p>
                             </div>
                         </div>
+
                         <div class="to-do-item__priority">
                             <i class="far fa-star"></i>
                         </div>
@@ -138,6 +146,7 @@
                         <div class="to-do-item__remove">
                             <i class="fas fa-trash-alt"></i>
                         </div>
+
                     </div>
 
                     <div class="to-do-item">
