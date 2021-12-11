@@ -37,7 +37,7 @@ function toggleLightMode() {
 }
 
 
-// Toggle Modal
+// ------- Toggle 'Settings' Modal --------
 const body = document.getElementById('body');
 const modalBackground = document.getElementById('modalBackground');
 const sideMenu = document.getElementById('sideMenu');
@@ -56,15 +56,22 @@ function toggleModal() {
 }
 
 
+// ------- Toggle 'Add' Modal for Small Screens --------
+
+
+
+
 // ---------- To-Do List --------------
 let listName = 'To-Do List';
 let userName = 'Daniel';
-let listedTodos = 0;
+let listedTodos = 1;
 let completedTodos = 0;
-let prioritizedTodos = 0;
+let prioritisedTodos = 0;
 
 const listNameText = document.querySelectorAll('#listNameText');
 const userNameText = document.querySelectorAll('#userNameText');
+const listedTodosText = document.querySelectorAll('#listedTodosText');
+const prioritisedText = document.querySelectorAll('#prioritisedText');
 
 listNameText.forEach((list) => {
     list.textContent = listName;
@@ -72,4 +79,24 @@ listNameText.forEach((list) => {
 
 userNameText.forEach((name) => {
     name.textContent = userName;
+});
+
+listedTodosText.forEach((todos) => {
+    const listedTodosInlineText = document.getElementById('listedTodosInlineText');
+
+    if (listedTodos === 1) {
+        listedTodosInlineText.textContent = 'is';
+        todos.textContent = `${listedTodos} item`;
+    } else {
+        listedTodosInlineText.textContent = 'are';
+        todos.textContent = `${listedTodos} items`;
+    }
+});
+
+prioritisedText.forEach((priority) => {
+    if (prioritisedTodos === 1) {
+        priority.textContent = `${prioritisedTodos} prioritised item`;
+    } else {
+        priority.textContent = `${prioritisedTodos} prioritised items`;
+    }
 });
