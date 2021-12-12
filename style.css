@@ -9,6 +9,9 @@
     --color-gray: #acacac;
 
     --color-primary: rgb(68, 218, 128);
+
+    --color-primary-light: rgb(187, 255, 214);
+    --color-primary-dark: rgb(27, 79, 47);
 }
 
 /* Universal */
@@ -44,7 +47,6 @@ html, body {
 
 .btn:hover {
     cursor: pointer;
-    /* transform: scale(110%); */
     filter: brightness(95%);
 }
 
@@ -59,7 +61,6 @@ html, body {
 }
 
 .input {
-    /* border: .1rem solid; */
     background-color: var(--color-light);
     color: var(--color-dark);
     font-size: 1.6rem;
@@ -247,7 +248,6 @@ html, body {
     border: .1rem solid var(--color-dark);
     border-style: dashed;
     border-radius: .5rem;
-    /* display: none; */
 }
 
 .empty-list-display i {
@@ -275,7 +275,7 @@ html, body {
 .filter-items {
     width: 80%;
     height: 4rem;
-    margin: 0 auto 4rem auto;
+    margin: 0 auto 2rem auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -352,6 +352,7 @@ html, body {
 .to-do-item {
     background-color: transparent;
     width: 100%;
+    margin: .5rem 0;
     padding: 2rem;
     transition: all .3s;
     display: flex;
@@ -412,6 +413,7 @@ html, body {
 .content-text__to-do {
     width: 100%;
     font-size: 1.8rem;
+    line-height: 1.5;
     padding-bottom: 1rem;
     border-bottom: .1rem solid var(--color-primary);
 }
@@ -421,6 +423,24 @@ html, body {
     padding-top: 1rem;
 }
 
+.item-complete {
+    background-color: var(--color-primary-light);
+    color: black;
+}
+
+.item-complete i:hover {
+    cursor: default;
+    filter: brightness(100%);
+}
+
+.item-complete i.fa-trash-alt {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
+.priority-item {
+    background-color: yellow;
+}
 
 /* Modal */
 .modal-background {
@@ -483,6 +503,8 @@ html, body {
 .body-fixed {
     overflow: hidden;
 }
+
+
 
 
 /* Media Queries */
