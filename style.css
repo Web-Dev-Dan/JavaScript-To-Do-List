@@ -9,7 +9,6 @@
     --color-gray: #acacac;
 
     --color-primary: rgb(68, 218, 128);
-
     --color-primary-light: rgb(187, 255, 214);
     --color-primary-dark: rgb(27, 79, 47);
 }
@@ -90,7 +89,6 @@ html, body {
     width: 100%;
     height: 10rem;
     padding: 0 5rem;
-    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     position: sticky;
     top: 0;
     left: 0;
