@@ -68,73 +68,115 @@ function toggleModal() {
 // ------- To-Do List Filters --------
 // 1. Toggle To-Do Container Order Button:
 const toDoItemContainer = document.querySelector('.to-do-item-container');
-const toggleListOrderBtn = document.getElementById('toggleListOrderBtn');
-const showAllBtn = document.getElementById('showAllBtn');
-const showCompleteBtn = document.getElementById('showCompleteBtn');
-const showIncompleteBtn = document.getElementById('showIncompleteBtn');
-const showPrioritisedBtn = document.getElementById('showPrioritisedBtn');
+const toggleListOrderBtn = document.querySelectorAll('#toggleListOrderBtn');
+const showAllBtn = document.querySelectorAll('#showAllBtn');
+const showCompleteBtn = document.querySelectorAll('#showCompleteBtn');
+const showIncompleteBtn = document.querySelectorAll('#showIncompleteBtn');
+const showPrioritisedBtn = document.querySelectorAll('#showPrioritisedBtn');
 
-toggleListOrderBtn.addEventListener('click', () => {
-    toDoItemContainer.classList.toggle('reverse-order');
-});
-// 2. Toggle 'All'
-showAllBtn.addEventListener('click', () => {
-    showAllBtn.classList.add('filter-active');
-    showCompleteBtn.classList.remove('filter-active');
-    showIncompleteBtn.classList.remove('filter-active');
-    showPrioritisedBtn.classList.remove('filter-active');
-
-    const listItem = document.querySelectorAll('.to-do-item');
-    listItem.forEach((item) => {
-        item.style.display = 'flex';
+toggleListOrderBtn.forEach((orderBtn) => {
+    orderBtn.addEventListener('click', () => {
+        toDoItemContainer.classList.toggle('reverse-order');
     });
 });
-// 3. Toggle 'Complete'
-showCompleteBtn.addEventListener('click', () => {
-    showAllBtn.classList.remove('filter-active');
-    showCompleteBtn.classList.add('filter-active');
-    showIncompleteBtn.classList.remove('filter-active');
-    showPrioritisedBtn.classList.remove('filter-active');
 
-    const listItem = document.querySelectorAll('.to-do-item');
-    listItem.forEach((item) => {
-        if (item.classList.contains('item-complete')) {
+// 2. Toggle 'All':
+showAllBtn.forEach((showAll) => {
+    showAll.addEventListener('click', () => {
+        showAll.classList.add('filter-active');
+
+        showCompleteBtn.forEach((showComplete) => {
+            showComplete.classList.remove('filter-active');
+        });
+        showIncompleteBtn.forEach((showIncomplete) => {
+            showIncomplete.classList.remove('filter-active');
+        });
+        showPrioritisedBtn.forEach((showPrioritised) => {
+            showPrioritised.classList.remove('filter-active');
+        });
+
+        const listItem = document.querySelectorAll('.to-do-item');
+        listItem.forEach((item) => {
             item.style.display = 'flex';
-        } else {
-            item.style.display = 'none';
-        }
+        });
     });
 });
-// 4. Toggle 'Incomplete'
-showIncompleteBtn.addEventListener('click', () => {
-    showAllBtn.classList.remove('filter-active');
-    showCompleteBtn.classList.remove('filter-active');
-    showIncompleteBtn.classList.add('filter-active');
-    showPrioritisedBtn.classList.remove('filter-active');
 
-    const listItem = document.querySelectorAll('.to-do-item');
-    listItem.forEach((item) => {
-        if (item.classList.contains('item-complete')) {
-            item.style.display = 'none';
-        } else {
-            item.style.display = 'flex';
-        }
+// 3. Toggle 'Complete':
+showCompleteBtn.forEach((showComplete) => {
+    showComplete.addEventListener('click', () => {
+        showComplete.classList.add('filter-active');
+
+        showAllBtn.forEach((showAll) => {
+            showAll.classList.remove('filter-active');
+        });
+        showIncompleteBtn.forEach((showIncomplete) => {
+            showIncomplete.classList.remove('filter-active');
+        });
+        showPrioritisedBtn.forEach((showPrioritised) => {
+            showPrioritised.classList.remove('filter-active');
+        });
+
+        const listItem = document.querySelectorAll('.to-do-item');
+        listItem.forEach((item) => {
+            if (item.classList.contains('item-complete')) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
     });
 });
-// 5. Toggle 'Prioritised'
-showPrioritisedBtn.addEventListener('click', () => {
-    showAllBtn.classList.remove('filter-active');
-    showCompleteBtn.classList.remove('filter-active');
-    showIncompleteBtn.classList.remove('filter-active');
-    showPrioritisedBtn.classList.add('filter-active');
 
-    const listItem = document.querySelectorAll('.to-do-item');
-    listItem.forEach((item) => {
-        if (item.classList.contains('priority-item')) {
-            item.style.display = 'flex';
-        } else {
-            item.style.display = 'none';
-        }
+// 4. Toggle Incomplete:
+showIncompleteBtn.forEach((showIncomplete) => {
+    showIncomplete.addEventListener('click', () => {
+        showIncomplete.classList.add('filter-active');
+
+        showAllBtn.forEach((showAll) => {
+            showAll.classList.remove('filter-active');
+        });
+        showCompleteBtn.forEach((showComplete) => {
+            showComplete.classList.remove('filter-active');
+        });
+        showPrioritisedBtn.forEach((showPrioritised) => {
+            showPrioritised.classList.remove('filter-active');
+        });
+
+        const listItem = document.querySelectorAll('.to-do-item');
+        listItem.forEach((item) => {
+            if (item.classList.contains('item-complete')) {
+                item.style.display = 'none';
+            } else {
+                item.style.display = 'flex';
+            }
+        });
+    });
+});
+
+// 5. Toggle 'Prioritised':
+showPrioritisedBtn.forEach((showPrioritised) => {
+    showPrioritised.addEventListener('click', () => {
+        showPrioritised.classList.add('filter-active');
+
+        showAllBtn.forEach((showAll) => {
+            showAll.classList.remove('filter-active');
+        });
+        showCompleteBtn.forEach((showComplete) => {
+            showComplete.classList.remove('filter-active');
+        });
+        showIncompleteBtn.forEach((showIncomplete) => {
+            showIncomplete.classList.remove('filter-active');
+        });
+
+        const listItem = document.querySelectorAll('.to-do-item');
+        listItem.forEach((item) => {
+            if (item.classList.contains('priority-item')) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
     });
 });
 
