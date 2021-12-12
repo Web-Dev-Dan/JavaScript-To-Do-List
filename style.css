@@ -508,7 +508,7 @@ html, body {
         margin-top: 0;
 }
 
-@media screen and (max-width: 30rem) {
+@media only screen and (max-width: 30rem) {
     .nav {
         height: 8rem;
     }
