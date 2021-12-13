@@ -9,8 +9,10 @@
     --color-gray: #acacac;
 
     --color-primary: rgb(68, 218, 128);
-    --color-primary-light: rgb(187, 255, 214);
-    --color-primary-dark: rgb(27, 79, 47);
+    --color-negative: rgb(223, 64, 64);
+
+    --color-complete: rgb(226, 252, 237);
+    --color-priority: rgb(252, 252, 124);
 }
 
 /* Universal */
@@ -31,6 +33,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow-y: scroll;
+    overflow-x: none;
 }
 
 .emphasis {
@@ -66,6 +69,7 @@ body {
 }
 
 .input {
+    /* border: .1rem solid; */
     background-color: var(--color-light);
     color: var(--color-dark);
     font-size: 1.6rem;
@@ -202,6 +206,7 @@ body {
 
 /* Add Button */
 .add-todo-container {
+    background-color: red;
     width: 80%;
     height: 4rem;
     margin: 0 auto 3rem auto;
@@ -428,8 +433,7 @@ body {
 }
 
 .item-complete {
-    background-color: var(--color-primary-light);
-    color: black;
+    background-color: var(--color-complete);
 }
 
 .item-complete i:hover {
@@ -443,7 +447,7 @@ body {
 }
 
 .priority-item {
-    background-color: yellow;
+    background-color: var(--color-priority);
 }
 
 /* Modal */
@@ -508,6 +512,125 @@ body {
     overflow: hidden;
 }
 
+.modal {
+    background-color: #000000;
+    width: 100vw;
+    height: 100vh;
+    opacity: .8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    display: none;
+}
+
+.modal-inner {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 10%;
+    z-index: 300;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-display {
+    background-color: var(--color-white);
+    width: 100%;
+    max-width: 50rem;
+    border-radius: .5rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.btn-close-box {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-close {
+    color: var(--color-dark);
+    font-size: 3rem;
+    transition: all .3s;
+}
+
+.btn-close:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
+.modal-header {
+    color: var(--color-black);
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.header-span {
+    color: var(--color-negative);
+}
+
+.modal-text-1, .modal-text-2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 100;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.modal-display input {
+    width: 80%;
+    height: 5rem;
+    margin: 1rem auto;
+    font-size: 2rem;
+}
+
+.modal-buttons {
+    width: 80%;
+    height: 5rem;
+    margin: 2rem auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-buttons .btn {
+    padding: 1.5rem 3rem;
+    border-radius: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-neutral {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+.btn-positive {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-negative {
+    background-color: var(--color-negative);
+    color: white;
+}
 
 
 /* Media Queries */
@@ -546,6 +669,7 @@ body {
     .add-todo-container {
         display: none;
     }
+
     .add-todo-container-small {
         display: flex;
     }
@@ -574,5 +698,33 @@ body {
     }
     .to-do-item__checkbox i {
         font-size: 2.4rem;
+    }
+    .modal-display {
+        padding: 2rem;
+    }
+    .modal-header {
+        margin-top: 2rem;
+    }
+    .modal-display input {
+        width: 100%;
+    }
+    .modal-buttons {
+        width: 100%;
+    }
+    .modal-buttons .btn {
+        width: 5rem;
+        padding: 1rem 0;
+        border-radius: 2.5rem;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-close-box {
+        top: 0;
+        right: 0;
+    }
+    .btn-close-box i {
+        font-size: 2rem;
     }
 }
