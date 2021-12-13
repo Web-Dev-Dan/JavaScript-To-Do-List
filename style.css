@@ -27,6 +27,12 @@ html, body {
     font-size: 62.5%;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
 .emphasis {
     font-weight: 600;
 }
