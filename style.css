@@ -510,6 +510,7 @@ body {
 
 
 
+@supports(display: flex) {
 
 /* Media Queries */
 @media only screen and (max-width: 40rem) {
@@ -577,3 +578,5 @@ body {
         font-size: 2.4rem;
     }
 }
+    
+    }
