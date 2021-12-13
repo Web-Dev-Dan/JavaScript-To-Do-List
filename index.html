@@ -9,15 +9,27 @@
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>To-Do List</title>
-    <style>
-        @media only screen and (max-width: 40rem) {}
-
-        @media only screen and (max-width: 30rem) {}
-    </style>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body id="body">
+    <!--Add/Edit/Delete Modal-->
+    <div class="modal"></div>
+    <div class="modal-inner">
+        <div class="modal-display">
+            <div class="btn-close-box">
+                <i class="fas fa-times btn-close"></i>
+            </div>
+            <p class="modal-header"><span class="header-span">Delete</span> Your To-Do Item?</p>
+            <p class="modal-text-1">You will be unable to recover the data once it is deleted.</p>
+            <p class="modal-text-2">Are you sure?</p>
+            <input class="input modal-input" type="text" placeholder="Something....">
+            <div class="modal-buttons">
+                <button class="btn btn-cancel btn-neutral">Cancel</button>
+                <button class="btn btn-main btn-negative">Delete</button>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
     <div id="modalBackground" class="modal-background"></div>
     <!-- Settings Modal -->
@@ -129,6 +141,7 @@
 
                 <!-- To-Do Item Container -->
                 <div class="to-do-item-container">
+
 
                 </div>
 
