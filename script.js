@@ -30,6 +30,9 @@ function toggleDarkMode() {
     root.style.setProperty('--color-black', '#ffffff');
     root.style.setProperty('--color-dark', '#f1f1f1');
     root.style.setProperty('--color-light', '#444444');
+
+    root.style.setProperty('--color-complete', 'rgb(69, 112, 87)');
+    root.style.setProperty('--color-priority', 'rgb(87, 87, 1)');
 }
 
 function toggleLightMode() {
@@ -38,6 +41,9 @@ function toggleLightMode() {
     root.style.setProperty('--color-black', '#333333');
     root.style.setProperty('--color-dark', '#444444');
     root.style.setProperty('--color-light', '#f1f1f1');
+
+    root.style.setProperty('--color-complete', 'rgb(226, 252, 237)');
+    root.style.setProperty('--color-priority', 'rgb(252, 252, 124)');
 }
 
 
@@ -367,6 +373,13 @@ function addNewItemToList() {
     starIcon.forEach((star) => {
         star.addEventListener('click', checkClickedIcon);
     });
+
+    // ---------- ❌ Delete Button ❌ --------------
+    const deleteIcon = document.querySelectorAll('.fa-trash-alt');
+
+    deleteIcon.forEach((deleteBtn) => {
+        deleteBtn.addEventListener('click', checkClickedIcon);
+    });
 }
 
 function checkClickedIcon(e) {
@@ -405,7 +418,7 @@ function checkClickedIcon(e) {
     }
 
     // If blank star, change to filled (prioritised) star:
-    else if (icon.classList.contains('far', 'fa-star')) {
+    else if (icon.classList.contains('far') && icon.classList.contains('fa-star')) {
         if (iconItem.classList.contains('item-complete')) {
             // Nothing happens
         } else {
@@ -418,7 +431,7 @@ function checkClickedIcon(e) {
     }
 
     // If filled (prioritised) star, change to blank star:
-    else if (icon.classList.contains('fas', 'fa-star')) {
+    else if (icon.classList.contains('fas') && icon.classList.contains('fa-star')) {
         if (iconItem.classList.contains('item-complete')) {
             // Nothing happens
         } else {
@@ -430,4 +443,59 @@ function checkClickedIcon(e) {
         }
     }
 
+    // If delete icon, open modal to delete
+    else if (icon.classList.contains('fa-trash-alt')) {
+        openDeleteModal();
+    }
 }
+
+
+// Open Default Modal
+const modal = document.querySelector('.modal');
+const modalInner = document.querySelector('.modal-inner');
+
+function openModal() {
+    window.scrollTo(0, 0);
+    body.classList.toggle('body-fixed');
+    modal.style.display = 'flex';
+    modalInner.style.display = 'flex';
+};
+
+function closeModal() {
+    body.classList.remove('body-fixed');
+    modal.style.display = 'none';
+    modalInner.style.display = 'none';
+}
+
+modalInner.addEventListener('click', (e) => {
+    const clickedArea = e.target;
+
+    if (clickedArea.classList.contains('modal-inner')) {
+        closeModal();
+    }
+});
+
+
+// Customise Modal (Delete)
+const modalHeader = document.querySelector('.modal-header');
+const headerSpan = document.querySelector('.header-span');
+const modalText1 = document.querySelector('.modal-text-1');
+const modalText2 = document.querySelector('.modal-text-2');
+const modalInput = document.querySelector('.modal-input');
+const modalBtn = document.querySelector('.btn-main');
+const btnCancel = document.querySelector('.btn-cancel');
+const btnClose = document.querySelector('.btn-close');
+
+btnCancel.addEventListener('click', closeModal);
+btnClose.addEventListener('click', closeModal);
+window.addEventListener('keydown', (e) => {
+    const pressedKey = e.key;
+
+    if (pressedKey === 'Escape') {
+        closeModal();
+    }
+});
+
+function openDeleteModal() {
+    openModal();
+};
