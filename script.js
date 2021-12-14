@@ -43,7 +43,7 @@ function toggleLightMode() {
     root.style.setProperty('--color-light', '#f1f1f1');
 
     root.style.setProperty('--color-complete', 'rgb(226, 252, 237)');
-    root.style.setProperty('--color-priority', 'rgb(252, 252, 124)');
+    root.style.setProperty('--color-priority', 'rgb(255, 255, 205)');
 }
 
 
@@ -246,6 +246,7 @@ function checkListedToDos() {
 
 
 // ---------- ⭐️ Add a To-Do ⭐️ --------------
+const smallAddBtn = document.getElementById('smallAddBtn');
 const addItemBtn = document.querySelectorAll('#addItemBtn');
 const addItemInput = document.querySelectorAll('#addItemInput');
 let inputFieldActive = false;
@@ -253,6 +254,8 @@ let inputFieldActive = false;
 addItemBtn.forEach((addBtn) => {
     addBtn.addEventListener('click', addItemToList);
 });
+
+smallAddBtn.addEventListener('click', openAddModal);
 
 //--Add Item to List on 'Enter'--
 document.addEventListener('keydown', function () {
@@ -374,6 +377,13 @@ function addNewItemToList() {
         star.addEventListener('click', checkClickedIcon);
     });
 
+    // ---------- 🛠 Edit Button 🛠 --------------
+    const editIcon = document.querySelectorAll('.fa-edit');
+
+    editIcon.forEach((editBtn) => {
+        editBtn.addEventListener('click', checkClickedIcon);
+    });
+
     // ---------- ❌ Delete Button ❌ --------------
     const deleteIcon = document.querySelectorAll('.fa-trash-alt');
 
@@ -445,7 +455,16 @@ function checkClickedIcon(e) {
 
     // If delete icon, open modal to delete
     else if (icon.classList.contains('fa-trash-alt')) {
-        openDeleteModal();
+        openDeleteModal(iconItem);
+    }
+
+    // If edit icon, open modal to edit
+    else if (icon.classList.contains('fa-edit')) {
+        if (iconItem.classList.contains('item-complete')) {
+            // Nothing happens
+        } else {
+            openEditModal();
+        }
     }
 }
 
@@ -465,6 +484,7 @@ function closeModal() {
     body.classList.remove('body-fixed');
     modal.style.display = 'none';
     modalInner.style.display = 'none';
+    currentModal = '';
 }
 
 modalInner.addEventListener('click', (e) => {
@@ -485,6 +505,7 @@ const modalInput = document.querySelector('.modal-input');
 const modalBtn = document.querySelector('.btn-main');
 const btnCancel = document.querySelector('.btn-cancel');
 const btnClose = document.querySelector('.btn-close');
+let currentModal;
 
 btnCancel.addEventListener('click', closeModal);
 btnClose.addEventListener('click', closeModal);
@@ -496,6 +517,66 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-function openDeleteModal() {
+function openAddModal() {
     openModal();
+    currentModal = 'add';
+
+    modalHeader.innerHTML = '<span class="header-span" style="color: var(--color-primary)">Add</span> A To-Do Item';
+    modalText1.textContent = 'Write a new to-do entry below:';
+    modalText2.style.display = 'none';
+    modalInput.style.display = 'flex';
+    modalInput.placeholder = 'Add a to-do...';
+    modalBtn.style.backgroundColor = 'var(--color-primary)';
+    modalBtn.textContent = 'Add';
 };
+
+function openEditModal() {
+    openModal();
+    currentModal = 'edit';
+
+    modalHeader.innerHTML = '<span class="header-span" style="color: var(--color-primary)">Edit</span> Your To-Do Item';
+    modalText1.textContent = 'You can update your to-do item below:';
+    modalText2.style.display = 'none';
+    modalInput.style.display = 'flex';
+    modalInput.placeholder = 'Whatever the item says';
+    modalBtn.style.backgroundColor = 'var(--color-primary)';
+    modalBtn.textContent = 'Edit';
+};
+
+function openDeleteModal(item) {
+    const thisItem = item;
+
+    openModal();
+    currentModal = 'delete';
+
+    modalHeader.innerHTML = '<span class="header-span" style="color: var(--color-negative)">Delete</span> Your To-Do Item?';
+    modalText1.textContent = 'You will be unable to recover the data once it is deleted.';
+    modalText2.textContent = 'Are you sure?';
+    modalInput.style.display = 'none';
+    modalBtn.style.backgroundColor = 'var(--color-negative)';
+    modalBtn.textContent = 'Delete';
+
+    window.addEventListener('keydown', (e) => {
+        const pressedKey = e.key;
+
+        if (pressedKey === 'Enter' && currentModal === 'delete') {
+            console.log('Deleting');
+            closeModal();
+            deleteItem(thisItem);
+        }
+    });
+};
+
+
+
+function deleteItem(itemToDelete) {
+
+    if (itemToDelete.classList.contains('item-complete')) {
+        itemToDelete.remove();
+    } else {
+        listedTodos--;
+        itemToDelete.remove();
+        updateSummary();
+    }
+
+}
