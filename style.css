@@ -11,8 +11,16 @@
     --color-primary: rgb(68, 218, 128);
     --color-negative: rgb(223, 64, 64);
 
+    /* Possible Colours: */
+    /* --color-primary-light: rgb(187, 255, 214); */
+    --color-primary-dark: rgb(27, 79, 47);
+
     --color-complete: rgb(226, 252, 237);
-    --color-priority: rgb(252, 252, 124);
+    --color-priority: rgb(255, 255, 205);
+    /*
+    --color-complete-dark: rgb(69, 112, 87);
+    --color-priority-dark: rgb(87, 87, 1);
+    */
 }
 
 /* Universal */
@@ -55,6 +63,7 @@ body {
 
 .btn:hover {
     cursor: pointer;
+    /* transform: scale(110%); */
     filter: brightness(95%);
 }
 
@@ -99,6 +108,7 @@ body {
     width: 100%;
     height: 10rem;
     padding: 0 5rem;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     position: sticky;
     top: 0;
     left: 0;
@@ -206,7 +216,6 @@ body {
 
 /* Add Button */
 .add-todo-container {
-    background-color: red;
     width: 80%;
     height: 4rem;
     margin: 0 auto 3rem auto;
@@ -227,6 +236,7 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 200;
 }
 
 .add-todo-container-small .btn-circle {
@@ -257,6 +267,7 @@ body {
     border: .1rem solid var(--color-dark);
     border-style: dashed;
     border-radius: .5rem;
+    /* display: none; */
 }
 
 .empty-list-display i {
@@ -274,6 +285,7 @@ body {
 }
 
 .item-container {
+    /* background-color: red; */
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -348,6 +360,7 @@ body {
 
 /* To-Do Item Container */
 .to-do-item-container {
+    /* background-color: red; */
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -360,6 +373,7 @@ body {
 
 .to-do-item {
     background-color: transparent;
+    /* background-color: yellow; */
     width: 100%;
     margin: .5rem 0;
     padding: 2rem;
@@ -392,11 +406,13 @@ body {
 }
 
 .item-content-main {
+    /* background-color: red; */
     display: flex;
     align-items: center;
     flex: 1;
 }
 .item-content-icons {
+    /* background-color: green; */
     display: flex;
 }
 
@@ -406,6 +422,7 @@ body {
 }
 
 .to-do-item__content {
+    /* background-color: red; */
     margin: 0 1rem;
     flex: 1;
     text-align: center;
@@ -420,6 +437,7 @@ body {
 }
 
 .content-text__to-do {
+    /* background-color: yellow; */
     width: 100%;
     font-size: 1.8rem;
     line-height: 1.5;
@@ -579,6 +597,7 @@ body {
     margin-bottom: 2rem;
     text-align: center;
     line-height: 1.5;
+    /* text-transform: uppercase; */
 }
 
 .header-span {
@@ -601,6 +620,7 @@ body {
 }
 
 .modal-buttons {
+    /* background-color: red; */
     width: 80%;
     height: 5rem;
     margin: 2rem auto 0 auto;
