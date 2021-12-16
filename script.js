@@ -70,7 +70,6 @@ function toggleModal() {
 
 
 
-
 // ------- To-Do List Filters --------
 // 1. Toggle To-Do Container Order Button:
 const toDoItemContainer = document.querySelector('.to-do-item-container');
@@ -566,8 +565,6 @@ function openDeleteModal(item) {
         }
     });
 };
-
-
 
 function deleteItem(itemToDelete) {
 
