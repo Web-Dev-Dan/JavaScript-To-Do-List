@@ -6,6 +6,9 @@
     --color-black: #333333;
     --color-light: #f1f1f1;
     --color-dark: #444444;
+
+    --color-primary: rgb(68, 218, 128);
+    --color-red: rgb(223, 64, 64);
 }
 
 /* Universal Styling */
@@ -18,6 +21,19 @@
 html, body {
     font-family: var(--font-primary);
     font-size: 62.5%;
+}
+
+/* Modals */
+.modal-background {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .8;
+    display: none;
+    z-index: 100;
 }
 
 /* Main Container */
@@ -102,17 +118,27 @@ html, body {
     background-color: var(--color-light);
     width: 100vw;
     height: 30rem;
-    padding: 5rem;
+    padding: 4rem 5rem;
 }
 
 .list {
     background-color: var(--color-white);
     width: 100%;
     max-width: 54rem;
+    height: 50rem;
     margin: 0 auto;
     padding: 5rem;
     border-radius: .5rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.list h1 {
+    color: var(--color-primary);
+    font-size: 3.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    margin-top: 2rem;
 }
 
 
