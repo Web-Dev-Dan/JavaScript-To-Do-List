@@ -99,7 +99,7 @@ html, body {
 
 
 /* ↔️ Media Queries ↔️ */
-@media only screen and (max-width: 40rem) {
+@media only screen and (max-width: 600px) {
     .nav {
         padding: 0 3rem;
     }
@@ -108,7 +108,7 @@ html, body {
     }
 }
 
-@media only screen and (max-width: 30rem) {
+@media only screen and (max-width: 500px) {
     .header h1 {
         font-size: 2.5rem;
     }
