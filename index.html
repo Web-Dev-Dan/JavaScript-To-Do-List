@@ -12,31 +12,203 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <div class="container">
-        <nav class="nav">
-            <div class="header">
-                <h1>To-Do List</h1>
+<body id="body">
+    <!--Add/Edit/Delete Modal-->
+    <div class="modal"></div>
+    <div class="modal-inner">
+        <div class="modal-display">
+            <div class="btn-close-box">
+                <i class="fas fa-times btn-close"></i>
             </div>
-            <div class="options">
-                <div class="options--toggle">
-                    <div class="options--toggle-inner">
-                        <div id="moonIcon" class="toggle-box">
-                            <i class="fas fa-moon"></i>
-                        </div>
-                        <div id="sunIcon" class="toggle-box">
-                            <i class="fas fa-sun"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="options--settings">
-                    <i class="fas fa-ellipsis-v"></i>
-                </div>
+            <p class="modal-header"><span class="header-span">Delete</span> Your To-Do Item?</p>
+            <p class="modal-text-1">You will be unable to recover the data once it is deleted.</p>
+            <p class="modal-text-2">Are you sure?</p>
+            <input class="input modal-input" type="text" placeholder="Something....">
+            <div class="modal-buttons">
+                <button class="btn btn-cancel btn-neutral">Cancel</button>
+                <button class="btn btn-main btn-negative">Delete</button>
             </div>
-        </nav>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="modalBackground" class="modal-background"></div>
+    <!-- Settings Modal -->
+    <aside id="sideMenu" class="side-menu">
+        <i class="close-side-menu fas fa-times"></i>
+        <div class="side-menu-inner">
+            <h2>Settings</h2>
+            <div class="side-menu-content">
+
+            </div>
+        </div>
+    </aside>
+    <!-- 'Add' Modal (Small Screens) -->
+    <div class="modal-container">
+
     </div>
 
+    <!-- Navigation -->
+    <nav class="nav">
+        <div>
+            <h1>To-Do List</h1>
+        </div>
+        <div class="options">
+            <div class="toggle">
+                <div class="toggle-inner">
+                    <div id="sunIcon" class="toggle--box">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div id="moonIcon" class="toggle--box">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings">
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- To-Do List -->
+    <div class="container">
+        <main class="list">
+
+            <!-- List Name -->
+            <h1 id="listNameText" class="list-header">To-Do List</h1>
+
+            <!-- List Summary -->
+            <div class="summary">
+                <p>Hello, <span class="emphasis"><span id="userNameText">User</span></span>!</p>
+                <p>There <span id="listedTodosInlineText">are</span> currently <span id="listedTodosText"
+                        class="emphasis">0 items</span> pending on your list.
+                </p>
+                <p>You have <span id="prioritisedText" class="emphasis">0 prioritised items</span>.</p>
+            </div>
+
+            <!-- Add Button -->
+            <div class="add-todo-container">
+                <input id="addItemInput" class="input" type="text" placeholder="Add a to-do...">
+                <button id="addItemBtn" class="btn btn-primary">Add <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            <!-- Add Button (Small Screens) -->
+            <div class="add-todo-container-small">
+                <div class="btn-background"></div>
+                <button id="smallAddBtn" class="btn-circle btn-primary"><i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            <!-- Empty List Display -->
+            <div class="empty-list-display">
+                <i class="far fa-smile"></i>
+                <p>Looks like your to-do list is currently empty!</p>
+            </div>
+
+            <!-- List Item Container -->
+            <div class="item-container">
+
+                <!-- Filter Items -->
+                <div class="filter-items filter-items-main">
+                    <div id="toggleListOrderBtn" class="filter-box filter-box__icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div id="showAllBtn" class="filter-box filter-box__small filter-active">All</div>
+                    <div id="showCompleteBtn" class="filter-box filter-box__text">Complete</div>
+                    <div id="showIncompleteBtn" class="filter-box filter-box__text">Incomplete</div>
+                    <div id="showPrioritisedBtn" class="filter-box filter-box__icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Filter Items (Small Screen) -->
+                <div class="filter-items filter-items-small">
+                    <div id="toggleListOrderBtn" class="filter-box filter-box__icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div id="showAllBtn" class="filter-box filter-box__small filter-active">All</div>
+                    <div id="showCompleteBtn" class="filter-box filter-box__icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div id="showIncompleteBtn" class="filter-box filter-box__icon">
+                        <i class="fas fa-hourglass"></i>
+                    </div>
+                    <div id="showPrioritisedBtn" class="filter-box filter-box__icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- To-Do Item Container -->
+                <div class="to-do-item-container">
+
+                    <!-- To-Do Item 
+                    <div class="to-do-item">
+                        <div class="item-content-main">
+                            <div class="to-do-item__checkbox">
+                                <i class="far fa-circle fa-2x"></i>
+                            </div>
+                            <div class="to-do-item__content">
+                                <div class="content-text">
+                                    <p class="content-text__to-do">Read a book</p>
+                                    <p class="content-text__date">Added Friday 10 December, 2021</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-content-icons">
+                            <div class="to-do-item__priority">
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="to-do-item__edit">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="to-do-item__remove">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                    -->
+
+                    <!-- To-Do Item 
+                    <div class="to-do-item">
+                        <div class="item-content-main">
+                            <div class="to-do-item__checkbox">
+                                <i class="far fa-circle fa-2x"></i>
+                            </div>
+                            <div class="to-do-item__content">
+                                <div class="content-text">
+                                    <p class="content-text__to-do">Go to the gym</p>
+                                    <p class="content-text__date">Added Friday 10 December, 2021</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-content-icons">
+                            <div class="to-do-item__priority">
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="to-do-item__edit">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="to-do-item__remove">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                    -->
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+
     <script src="script.js"></script>
+
 </body>
 
 </html>
