@@ -22,3 +22,23 @@ function toggleLightMode() {
 
 sunIcon.addEventListener('click', toggleDarkMode);
 moonIcon.addEventListener('click', toggleLightMode);
+
+
+// ---------- 📄 Toggle Modals 📄 --------------
+const settingsBtn = document.getElementById('settingsBtn');
+const modalBackground = document.querySelector('.modal-background');
+
+function openModalBackground() {
+    modalBackground.style.display = 'flex';
+}
+
+function closeModal() {
+    modalBackground.style.display = 'none';
+}
+
+function openSettings() {
+    openModalBackground();
+}
+
+settingsBtn.addEventListener('click', openSettings);
+modalBackground.addEventListener('click', closeModal);
