@@ -96,3 +96,24 @@ html, body {
 .options--settings:hover {
     cursor: pointer;
 }
+
+
+/* ↔️ Media Queries ↔️ */
+@media only screen and (max-width: 40rem) {
+    .nav {
+        padding: 0 3rem;
+    }
+    .options {
+        width: 8rem;
+    }
+}
+
+@media only screen and (max-width: 30rem) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    .nav {
+        height: 8rem;
+        padding: 0 2rem;
+    }
+}
