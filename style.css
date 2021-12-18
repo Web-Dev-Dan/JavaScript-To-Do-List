@@ -106,6 +106,10 @@ html, body {
     align-items: center;
 }
 
+.settings-header:not(:first-child) {
+    margin-top: 4rem;
+}
+
 .settings-header p {
     font-size: 2rem;
     font-weight: 600;
@@ -187,6 +191,84 @@ html, body {
     border: .5rem solid var(--color-dark)
 }
 
+.stats-section {
+    height: 14rem;
+    margin-top: 1rem;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(4, auto);
+}
+
+.stat-box {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-box--number {
+    font-size: 4rem;
+}
+
+.stat-box--text {
+    font-size: .8rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 2rem;
+}
+
+.stat-box--text p:first-child {
+    margin-bottom: .4rem;
+}
+
+.summary-stats {
+    width: 100%;
+    height: 10rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-stats--box {
+    background-color: var(--color-light);
+    width: 49%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.stats-icon i {
+    font-size: 3rem;
+}
+
+.stats-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats-text--number {
+    font-size: 4rem;
+}
+
+.stats-text--text {
+    font-size: .8rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+.stats-text--text p:first-child {
+    margin-bottom: .4rem;
+}
+
+
 .settings-modal--footer {
     width: 100%;
     height: 10rem;
@@ -199,6 +281,7 @@ html, body {
     color: var(--color-dark);
     font-size: 1.8rem;
 }
+
 
 
 /* Add Button (Small Screens) */
@@ -399,11 +482,27 @@ html, body {
     .settings-modal--container {
         padding: 0 2rem;
     }
+    .settings-header:not(:first-child) {
+        margin-top: 2rem;
+    }
     .settings-header p {
         font-size: 1.8rem;
     }
     .settings-content p {
         font-size: 1.4rem;
+    }
+    .stats-section {
+        height: 12rem;
+    }
+    .stat-box--number {
+        font-size: 3rem;
+    }
+    .stats-text--number {
+        font-size: 3rem;
+    }
+    
+    .stats-text--text p:first-child {
+        margin-bottom: .2rem;
     }
     .colour-box {
         width: 2.4rem;
