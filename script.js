@@ -47,3 +47,32 @@ function openSettings() {
 settingsBtn.addEventListener('click', openSettings);
 modalBackground.addEventListener('click', closeModal);
 closeSettingsBtn.addEventListener('click', closeModal);
+
+
+// ---------- 🟢🔵🟣🟠 Change Colour 🟢🔵🟣🟠 --------------
+const colourBtn = document.querySelectorAll('.colour-box');
+
+colourBtn.forEach((colour) => {
+    colour.addEventListener('click', () => {
+        colourBtn.forEach((colour) => {
+            colour.classList.remove('colour-active');
+        });
+
+        if (colour.classList.contains('colour-green')) {
+            colour.classList.add('colour-active');
+            root.style.setProperty('--color-primary', 'rgb(68, 218, 128)');
+        } else if (colour.classList.contains('colour-orange')) {
+            root.style.setProperty('--color-primary', 'rgb(255, 165, 0)');
+            colour.classList.add('colour-active');
+        } else if (colour.classList.contains('colour-blue')) {
+            root.style.setProperty('--color-primary', 'rgb(80, 170, 218)');
+            colour.classList.add('colour-active');
+        } else if (colour.classList.contains('colour-pink')) {
+            root.style.setProperty('--color-primary', 'rgb(247, 167, 180)');
+            colour.classList.add('colour-active');
+        } else if (colour.classList.contains('colour-purple')) {
+            root.style.setProperty('--color-primary', 'rgb(112, 112, 216)');
+            colour.classList.add('colour-active');
+        }
+    });
+});
