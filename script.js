@@ -27,6 +27,8 @@ moonIcon.addEventListener('click', toggleLightMode);
 // ---------- 📄 Toggle Modals 📄 --------------
 const settingsBtn = document.getElementById('settingsBtn');
 const modalBackground = document.querySelector('.modal-background');
+const settingsModal = document.querySelector('.settings-modal');
+const closeSettingsBtn = document.querySelector('.close-settings-modal');
 
 function openModalBackground() {
     modalBackground.style.display = 'flex';
@@ -34,11 +36,14 @@ function openModalBackground() {
 
 function closeModal() {
     modalBackground.style.display = 'none';
+    settingsModal.style.display = 'none';
 }
 
 function openSettings() {
     openModalBackground();
+    settingsModal.style.display = 'flex';
 }
 
 settingsBtn.addEventListener('click', openSettings);
 modalBackground.addEventListener('click', closeModal);
+closeSettingsBtn.addEventListener('click', closeModal);
