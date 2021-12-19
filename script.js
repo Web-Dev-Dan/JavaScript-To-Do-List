@@ -76,3 +76,63 @@ colourBtn.forEach((colour) => {
         }
     });
 });
+
+
+// ---------- 📝 'Settings' Inner Modal 📝 --------------
+const settingsInnerModal = document.querySelector('.settings-inner-modal');
+const settingsInnerContainer = document.querySelector('.settings-inner-container');
+const modalCloseBtn = document.querySelectorAll('.close-inner-modal-container');
+const modalCancelBtn = document.querySelectorAll('.modal-cancel-btn');
+const editUsernameBtn = document.getElementById('editUsernameBtn');
+const editListNameBtn = document.getElementById('editListNameBtn');
+const resetListBtn = document.getElementById('resetListBtn');
+
+function openSettingsInnerModal() {
+    settingsInnerModal.style.display = 'flex';
+    settingsInnerContainer.style.display = 'flex';
+    settingsInnerContainer.classList.add('active');
+
+    // Close modal on outside click
+    if (settingsInnerContainer.classList.contains('active')) {
+        settingsInnerContainer.addEventListener('click', (e) => {
+            const clicked = e.target;
+
+            if (clicked.classList.contains('settings-inner-container')) {
+                closeSettingsInnerModal();
+            }
+        });
+    }
+}
+
+function closeSettingsInnerModal() {
+    settingsInnerModal.style.display = 'none';
+    settingsInnerContainer.style.display = 'none';
+    settingsInnerContainer.classList.remove('active');
+}
+
+function openEditUsername() {
+    openSettingsInnerModal();
+    console.log('Edit username');
+}
+
+function openEditListName() {
+    openSettingsInnerModal();
+    console.log('Edit list name');
+}
+
+function openResetList() {
+    openSettingsInnerModal();
+    console.log('Reset list');
+}
+
+editUsernameBtn.addEventListener('click', openEditUsername);
+editListNameBtn.addEventListener('click', openEditListName);
+resetListBtn.addEventListener('click', openResetList);
+
+modalCloseBtn.forEach((closeBtn) => {
+    closeBtn.addEventListener('click', closeSettingsInnerModal);
+});
+
+modalCancelBtn.forEach((cancelBtn) => {
+    cancelBtn.addEventListener('click', closeSettingsInnerModal);
+});
