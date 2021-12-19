@@ -113,8 +113,8 @@ html, body {
     width: 4rem;
     height: 4rem;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 2rem;
+    right: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -749,29 +749,23 @@ html, body {
 
 @media only screen and (max-width: 500px) {
     .btn {
-        font-size: 1rem;
+        font-size: 1.6rem;
         text-transform: uppercase;
-        width: 8rem;
-        height: 3.6rem;
+        width: 10rem;
+        height: 4rem;
         border-radius: 1.8rem;
         border: none;
         outline: none;
     }
     .settings-inner-container--box {
-        padding: 3rem;
+        width: 100%;
+        height: 100%;
+        padding: 4rem;
+        border-radius: 0;
     }
-    .close-inner-modal-container {
-        width: 3rem;
-        height: 3rem;
-        position: absolute;
-        top: .5rem;
-        right: .5rem;
+    .settings-inner-container--box input::placeholder {
+        font-size: 1.6rem;
     }
-    .settings-inner-container--box input {
-        font-size: 1.4rem;
-        padding: 1rem 1.5rem;
-        margin-top: 3rem;
-    } 
     .settings-modal--container {
         padding: 0 2rem;
     }
