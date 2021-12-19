@@ -751,9 +751,10 @@ html, body {
     .btn {
         font-size: 1.6rem;
         text-transform: uppercase;
-        width: 10rem;
+        max-width: 12rem;
         height: 4rem;
-        border-radius: 1.8rem;
+        margin: 0 .2rem;
+        border-radius: 2rem;
         border: none;
         outline: none;
     }
@@ -762,6 +763,9 @@ html, body {
         height: 100%;
         padding: 4rem;
         border-radius: 0;
+    }
+    .close-inner-modal-container {
+        display: none;
     }
     .settings-inner-container--box input::placeholder {
         font-size: 1.6rem;
