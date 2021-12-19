@@ -23,18 +23,19 @@ html, body {
     font-size: 62.5%;
 }
 
+/* Universal Button Template */
 .btn {
+    background-color: var(--color-light);
+    color: var(--color-dark);
     font-family: var(--font-primary);
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 1.6rem;
     text-transform: uppercase;
-    letter-spacing: .1rem;
-    min-width: 10rem;
-    padding: 2rem 4rem;
+    width: 14rem;
+    height: 4rem;
+    padding: 1rem;
+    border-radius: 2rem;
     border: none;
-    border-radius: 3rem;
     outline: none;
-    transition: all .3s;
 }
 
 .btn:hover {
@@ -58,7 +59,7 @@ html, body {
 
 /* Modals */
 .modal-background {
-    background-color: black;
+    background-color: #000000;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -67,6 +68,111 @@ html, body {
     opacity: .8;
     display: none;
     z-index: 100;
+}
+
+.settings-inner-modal {
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: .8;
+    display: none;
+    z-index: 150;
+}
+
+.settings-inner-container {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 160;
+}
+
+.settings-inner-container--box {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    width: 80%;
+    max-width: 50rem;
+    padding: 5rem;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.close-inner-modal-container {
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-inner-modal-container:hover {
+    cursor: pointer;
+}
+
+.close-inner-modal-container i {
+    color: var(--color-dark);
+    font-size: 3rem;
+}
+
+.settings-inner-container--box h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.settings-inner-container--box p {
+    font-size: 1.8rem;
+    font-weight: 100;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 1.5rem;
+}
+
+.settings-inner-container--box input {
+    background-color: var(--color-light);
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    width: 100%;
+    max-width: 30rem;
+    margin: 3rem 0;
+    padding: 1rem 2rem;
+    border: .1rem solid transparent;
+    outline: none;
+}
+
+.settings-inner-container--box input:focus {
+    border: .1rem solid var(--color-dark);
+}
+
+.settings-inner-container--box input::placeholder {
+    font-family: var(--font-primary);
+    color: var(--color-dark);
+    font-weight: 100;
+    opacity: .5;
+}
+
+.settings-inner-container--box .button-container {
+    width: 100%;
+    max-width: 30rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Settings Modal */
@@ -313,6 +419,31 @@ html, body {
     align-items: center;
 }
 
+.recent-box {
+    width: 100%;
+    margin-top: 2rem;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.recent-box--item {
+    width: 100%;
+    margin: 1rem auto;
+}
+
+.recent-box p {
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.recent-box--item p {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 .progress-container {
     height: 10rem;
 }
@@ -369,6 +500,29 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.reset-btn {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    min-width: 10rem;
+    padding: 2rem 4rem;
+    border: none;
+    border-radius: 3rem;
+    outline: none;
+    transition: all .3s;
+}
+
+.reset-btn:hover {
+    cursor: pointer;
+    filter: brightness(95%);
+}
+
+.reset-btn:active {
+    filter: brightness(90%);
 }
 
 
@@ -553,6 +707,10 @@ html, body {
     font-weight: 600;
 }
 
+.highlight {
+    color: var(--color-primary);
+}
+
 
 /* ↔️ Media Queries ↔️ */
 @media only screen and (max-width: 600px) {
@@ -585,7 +743,38 @@ html, body {
 
 @media only screen and (max-width: 500px) {
     .btn {
+        font-size: 1rem;
+        text-transform: uppercase;
+        width: 8rem;
+        height: 3.6rem;
+        border-radius: 1.8rem;
+        border: none;
+        outline: none;
+    }
+    .settings-inner-container--box {
+        padding: 3rem;
+    }
+    .close-inner-modal-container {
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+    }
+    .close-inner-modal-container i {
+        font-size: 2rem;
+    }
+    .settings-inner-container--box h2 {
+        font-size: 2rem;
+    }
+    .settings-inner-container--box p {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+    .settings-inner-container--box input {
         font-size: 1.4rem;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
     }
     .settings-modal--container {
         padding: 0 2rem;
@@ -617,6 +806,16 @@ html, body {
     .recent-box--empty-inner {
         font-size: 1.6rem;
     }
+    .recent-box {
+        margin-top: 1rem;
+    }
+    .recent-box p {
+        font-size: 1.2rem;
+        padding: 0 2rem;
+    }
+    .recent-box--item p {
+        font-size: 1.4rem;
+    }
     .progress-bar {
         width: 80%;
     }
@@ -643,6 +842,9 @@ html, body {
     }
     .colour-active {
         border: .2rem solid var(--color-dark)
+    }
+    .reset-btn {
+        font-size: 1.4rem;
     }
     .add-btn-container {
         display: flex;
