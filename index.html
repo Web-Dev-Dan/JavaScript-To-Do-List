@@ -22,9 +22,9 @@
                     <i class="fas fa-times"></i>
                 </div>
                 <h2 id="smallModalHeader">Header <span class="highlight">Name</span>.</h2>
-                <p id="smallModalP1">Your current username is Daniel.</p>
+                <p id="smallModalP1">Your current username is User.</p>
                 <p id="smallModalP2">You can update your username below:</p>
-                <input id="smallModalInput" type="text" placeholder="Placeholder Text">
+                <input id="smallModalInput" type="text" placeholder="Placeholder Text" autocomplete="off">
                 <div class="button-container">
                     <button class="btn modal-cancel-btn">Cancel</button>
                     <button id="smallModalBtnMain" class="btn btn-primary">Change</button>
@@ -49,10 +49,10 @@
                     </div>
                     <div class="settings-content">
                         <p class="emphasis">Username:</p>
-                        <p>Daniel</p>
+                        <p class="username">User</p>
                         <p id="editUsernameBtn" class="settings-edit"><i class="fas fa-edit"></i> Edit</p>
                         <p class="emphasis">List Name:</p>
-                        <p>To-Do List</p>
+                        <p class="listName">To-Do List</p>
                         <p id="editListNameBtn" class="settings-edit"><i class="fas fa-edit"></i> Edit</p>
                         <p class="emphasis">Colour Theme:</p>
                         <div class="colours">
@@ -205,9 +205,9 @@
         <!-- List Container -->
         <div class="list-container">
             <main class="list">
-                <h1>To-Do List</h1>
+                <h1 class="listName">To-Do List</h1>
                 <div class="summary">
-                    <p>Hello, <span class="emphasis">Daniel</span>!</p>
+                    <p>Hello, <span class="emphasis username">Daniel</span>!</p>
                     <p>There are currently <span class="emphasis">0 items</span> pending on your list.</p>
                     <p>You have <span class="emphasis">0 prioritised items</span>.</p>
                 </div>
