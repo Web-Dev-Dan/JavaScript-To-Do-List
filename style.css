@@ -132,6 +132,7 @@ html, body {
 .settings-inner-container--box h2 {
     font-size: 3rem;
     text-align: center;
+    line-height: 1.5;
     margin-bottom: 1rem;
 }
 
@@ -145,11 +146,12 @@ html, body {
 
 .settings-inner-container--box input {
     background-color: var(--color-light);
+    color: var(--color-black);
     font-family: var(--font-primary);
     font-size: 2rem;
     width: 100%;
     max-width: 30rem;
-    margin: 3rem 0;
+    margin-top: 3rem;
     padding: 1rem 2rem;
     border: .1rem solid transparent;
     outline: none;
@@ -169,7 +171,7 @@ html, body {
 .settings-inner-container--box .button-container {
     width: 100%;
     max-width: 30rem;
-    margin-top: 1rem;
+    margin-top: 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -711,6 +713,10 @@ html, body {
     color: var(--color-primary);
 }
 
+.highlight-negative {
+    color: var(--color-red);
+}
+
 
 /* ↔️ Media Queries ↔️ */
 @media only screen and (max-width: 600px) {
@@ -761,21 +767,11 @@ html, body {
         top: .5rem;
         right: .5rem;
     }
-    .close-inner-modal-container i {
-        font-size: 2rem;
-    }
-    .settings-inner-container--box h2 {
-        font-size: 2rem;
-    }
-    .settings-inner-container--box p {
-        font-size: 1.2rem;
-        margin-top: 1rem;
-    }
     .settings-inner-container--box input {
         font-size: 1.4rem;
         padding: 1rem 1.5rem;
-        margin: 1.5rem 0;
-    }
+        margin-top: 3rem;
+    } 
     .settings-modal--container {
         padding: 0 2rem;
     }
