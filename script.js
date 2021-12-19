@@ -78,9 +78,27 @@ colourBtn.forEach((colour) => {
 });
 
 
+// ---------- 📊 List Details 📊 --------------
+let listName = 'To-Do List';
+let username = 'User';
+
+const usernameText = document.querySelectorAll('.username');
+const listNameText = document.querySelectorAll('.listName');
+
+usernameText.forEach((name) => {
+    name.textContent = username;
+});
+
+listNameText.forEach((name) => {
+    name.textContent = listName;
+});
+
+
 // ---------- 📝 'Settings' Inner Modal 📝 --------------
 const settingsInnerModal = document.querySelector('.settings-inner-modal');
 const settingsInnerContainer = document.querySelector('.settings-inner-container');
+const settingsModalBox = document.querySelector('.settings-inner-container--box');
+
 const modalCloseBtn = document.querySelectorAll('.close-inner-modal-container');
 const modalCancelBtn = document.querySelectorAll('.modal-cancel-btn');
 
@@ -115,30 +133,36 @@ function closeSettingsInnerModal() {
     settingsInnerModal.style.display = 'none';
     settingsInnerContainer.style.display = 'none';
     settingsInnerContainer.classList.remove('active');
+    settingsModalBox.classList.remove('edit-username-active', 'edit-list-name-active', 'reset-list-active');
+    smallModalInput.value = '';
 }
 
 function openEditUsername() {
     openSettingsInnerModal();
     smallModalHeader.innerHTML = 'Change Your <span class="highlight">Username</span>';
-    smallModalP1.innerHTML = `Your current username is <span class="emphasis">Bob</span>.`;
+    smallModalP1.innerHTML = `Your current username is <span class="emphasis">${username}</span>.`;
     smallModalP2.innerHTML = 'You can update your username below:';
     smallModalInput.style.display = 'flex';
     smallModalInput.placeholder = 'Enter a New Username...';
     smallModalBtnMain.classList.add('btn-primary');
     smallModalBtnMain.classList.remove('btn-negative');
     smallModalBtnMain.textContent = 'Change';
+
+    settingsModalBox.classList.add('edit-username-active');
 }
 
 function openEditListName() {
     openSettingsInnerModal();
     smallModalHeader.innerHTML = 'Change Your <span class="highlight">List Name</span>';
-    smallModalP1.innerHTML = `Your current list name is <span class="emphasis">Some List</span>.`;
+    smallModalP1.innerHTML = `Your current list name is <span class="emphasis">${listName}</span>.`;
     smallModalP2.innerHTML = 'You can update your list name below:';
     smallModalInput.style.display = 'flex';
     smallModalInput.placeholder = 'Enter a New List Name...';
     smallModalBtnMain.classList.add('btn-primary');
     smallModalBtnMain.classList.remove('btn-negative');
     smallModalBtnMain.textContent = 'Change';
+
+    settingsModalBox.classList.add('edit-list-name-active');
 }
 
 function openResetList() {
@@ -150,6 +174,8 @@ function openResetList() {
     smallModalBtnMain.classList.add('btn-negative');
     smallModalBtnMain.classList.remove('btn-primary');
     smallModalBtnMain.textContent = 'Reset';
+
+    settingsModalBox.classList.add('reset-list-active');
 }
 
 editUsernameBtn.addEventListener('click', openEditUsername);
@@ -162,4 +188,65 @@ modalCloseBtn.forEach((closeBtn) => {
 
 modalCancelBtn.forEach((cancelBtn) => {
     cancelBtn.addEventListener('click', closeSettingsInnerModal);
+});
+
+
+// Update All Info (username, list name, stats etc.)
+function updateInfo() {
+    usernameText.forEach((name) => {
+        name.textContent = username;
+    });
+
+    listNameText.forEach((name) => {
+        name.textContent = listName;
+    });
+}
+
+// Submit decision on click
+smallModalBtnMain.addEventListener('click', () => {
+    if (settingsModalBox.classList.contains('edit-username-active')) {
+        // Change Username
+        username = smallModalInput.value;
+        closeSettingsInnerModal();
+        updateInfo();
+    } else if (settingsModalBox.classList.contains('edit-list-name-active')) {
+        // Change List Name
+        listName = smallModalInput.value;
+        closeSettingsInnerModal();
+        updateInfo();
+    } else if (settingsModalBox.classList.contains('reset-list-active')) {
+        // Reset List
+    }
+});
+
+// Submit decision on 'Enter' pressed
+document.addEventListener('keydown', (e) => {
+    const pressed = e.key;
+
+    if (pressed === 'Enter') {
+        if (settingsInnerContainer.classList.contains('active')) {
+            if (settingsModalBox.classList.contains('edit-username-active')) {
+                if (smallModalInput.value !== '') {
+                    // Change Username
+                    username = smallModalInput.value;
+                    closeSettingsInnerModal();
+                    updateInfo();
+                }
+            } else if (settingsModalBox.classList.contains('edit-list-name-active')) {
+                if (smallModalInput.value !== '') {
+                    // Change List Name
+                    listName = smallModalInput.value;
+                    closeSettingsInnerModal();
+                    updateInfo();
+                }
+            } else if (settingsModalBox.classList.contains('reset-list-active')) {
+                // Reset List
+            }
+        }
+    } else if (pressed === 'Escape') {
+        if (settingsInnerContainer.classList.contains('active')) {
+            console.log('modal closed');
+            closeSettingsInnerModal();
+        }
+    }
 });
