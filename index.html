@@ -14,6 +14,23 @@
 
 <body>
     <div class="container">
+        <!-- 'Settings' Inner Modal -->
+        <div class="settings-inner-modal"></div>
+        <div class="settings-inner-container">
+            <div class="settings-inner-container--box">
+                <div class="close-inner-modal-container">
+                    <i class="fas fa-times"></i>
+                </div>
+                <h2>Header <span class="highlight">Name</span>.</h2>
+                <p>Your current username is Daniel.</p>
+                <p>You can update your username below:</p>
+                <input type="text" placeholder="Placeholder Text">
+                <div class="button-container">
+                    <button class="btn modal-cancel-btn">Cancel</button>
+                    <button class="btn btn-primary">Change</button>
+                </div>
+            </div>
+        </div>
         <!-- Modals -->
         <div class="modal-background"></div>
         <!-- 'Settings' Modal -->
@@ -33,10 +50,10 @@
                     <div class="settings-content">
                         <p class="emphasis">Username:</p>
                         <p>Daniel</p>
-                        <p class="settings-edit"><i class="fas fa-edit"></i> Edit</p>
+                        <p id="editUsernameBtn" class="settings-edit"><i class="fas fa-edit"></i> Edit</p>
                         <p class="emphasis">List Name:</p>
                         <p>To-Do List</p>
-                        <p class="settings-edit"><i class="fas fa-edit"></i> Edit</p>
+                        <p id="editListNameBtn" class="settings-edit"><i class="fas fa-edit"></i> Edit</p>
                         <p class="emphasis">Colour Theme:</p>
                         <div class="colours">
                             <div class="colour-active colour-box colour-green"></div>
@@ -115,6 +132,14 @@
                             <p>Nothing to report...</p>
                         </div>
                     </div>
+                    <div class="recent-box">
+                        <p>The following item was <span class="emphasis">added</span> to 'To-Do List' at 12:39 on
+                            Saturday 18 December,
+                            2021:</p>
+                        <div class="recent-box--item">
+                            <p>Read a book</p>
+                        </div>
+                    </div>
                     <!-- Progress -->
                     <div class="settings-header">
                         <p>Your Progress</p>
@@ -139,7 +164,7 @@
                     </div>
                     <!-- Reset List -->
                     <div class="reset-button-container">
-                        <button class="btn btn-negative">Reset List</button>
+                        <button id="resetListBtn" class="reset-btn btn-negative">Reset List</button>
                     </div>
                 </div>
             </div>
