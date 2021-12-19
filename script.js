@@ -83,9 +83,16 @@ const settingsInnerModal = document.querySelector('.settings-inner-modal');
 const settingsInnerContainer = document.querySelector('.settings-inner-container');
 const modalCloseBtn = document.querySelectorAll('.close-inner-modal-container');
 const modalCancelBtn = document.querySelectorAll('.modal-cancel-btn');
+
 const editUsernameBtn = document.getElementById('editUsernameBtn');
 const editListNameBtn = document.getElementById('editListNameBtn');
 const resetListBtn = document.getElementById('resetListBtn');
+
+const smallModalHeader = document.getElementById('smallModalHeader');
+const smallModalP1 = document.getElementById('smallModalP1');
+const smallModalP2 = document.getElementById('smallModalP2');
+const smallModalInput = document.getElementById('smallModalInput');
+const smallModalBtnMain = document.getElementById('smallModalBtnMain');
 
 function openSettingsInnerModal() {
     settingsInnerModal.style.display = 'flex';
@@ -112,17 +119,37 @@ function closeSettingsInnerModal() {
 
 function openEditUsername() {
     openSettingsInnerModal();
-    console.log('Edit username');
+    smallModalHeader.innerHTML = 'Change Your <span class="highlight">Username</span>';
+    smallModalP1.innerHTML = `Your current username is <span class="emphasis">Bob</span>.`;
+    smallModalP2.innerHTML = 'You can update your username below:';
+    smallModalInput.style.display = 'flex';
+    smallModalInput.placeholder = 'Enter a New Username...';
+    smallModalBtnMain.classList.add('btn-primary');
+    smallModalBtnMain.classList.remove('btn-negative');
+    smallModalBtnMain.textContent = 'Change';
 }
 
 function openEditListName() {
     openSettingsInnerModal();
-    console.log('Edit list name');
+    smallModalHeader.innerHTML = 'Change Your <span class="highlight">List Name</span>';
+    smallModalP1.innerHTML = `Your current list name is <span class="emphasis">Some List</span>.`;
+    smallModalP2.innerHTML = 'You can update your list name below:';
+    smallModalInput.style.display = 'flex';
+    smallModalInput.placeholder = 'Enter a New List Name...';
+    smallModalBtnMain.classList.add('btn-primary');
+    smallModalBtnMain.classList.remove('btn-negative');
+    smallModalBtnMain.textContent = 'Change';
 }
 
 function openResetList() {
     openSettingsInnerModal();
-    console.log('Reset list');
+    smallModalHeader.innerHTML = '<span class="highlight-negative">Reset</span> Your List?';
+    smallModalP1.innerHTML = 'You will be unable to recover your data once your list has been reset.';
+    smallModalP2.innerHTML = 'Are you sure?';
+    smallModalInput.style.display = 'none';
+    smallModalBtnMain.classList.add('btn-negative');
+    smallModalBtnMain.classList.remove('btn-primary');
+    smallModalBtnMain.textContent = 'Reset';
 }
 
 editUsernameBtn.addEventListener('click', openEditUsername);
