@@ -37,11 +37,13 @@ function openModalBackground() {
 function closeModal() {
     modalBackground.style.display = 'none';
     settingsModal.style.display = 'none';
+    settingsModal.classList.remove('settings-modal-active');
 }
 
 function openSettings() {
     openModalBackground();
     settingsModal.style.display = 'flex';
+    settingsModal.classList.add('settings-modal-active');
 }
 
 settingsBtn.addEventListener('click', openSettings);
@@ -127,6 +129,8 @@ function openSettingsInnerModal() {
             }
         });
     }
+
+    settingsModal.classList.remove('settings-modal-active');
 }
 
 function closeSettingsInnerModal() {
@@ -135,6 +139,8 @@ function closeSettingsInnerModal() {
     settingsInnerContainer.classList.remove('active');
     settingsModalBox.classList.remove('edit-username-active', 'edit-list-name-active', 'reset-list-active');
     smallModalInput.value = '';
+
+    settingsModal.classList.add('settings-modal-active');
 }
 
 function openEditUsername() {
@@ -245,8 +251,10 @@ document.addEventListener('keydown', (e) => {
         }
     } else if (pressed === 'Escape') {
         if (settingsInnerContainer.classList.contains('active')) {
-            console.log('modal closed');
             closeSettingsInnerModal();
+        } else if (settingsModal.classList.contains('settings-modal-active')) {
+            // Close Settings Modal:
+            closeModal();
         }
     }
 });
