@@ -1,3 +1,5 @@
+'use strict'
+
 // ---------- 🔆 Toggle Light/Dark Mode 🌙 --------------
 const sunIcon = document.getElementById('sunIcon');
 const moonIcon = document.getElementById('moonIcon');
@@ -212,16 +214,25 @@ function updateInfo() {
 smallModalBtnMain.addEventListener('click', () => {
     if (settingsModalBox.classList.contains('edit-username-active')) {
         // Change Username
-        username = smallModalInput.value;
-        closeSettingsInnerModal();
-        updateInfo();
+        if (smallModalInput.value != '') {
+            username = smallModalInput.value;
+            closeSettingsInnerModal();
+            updateInfo();
+        }
     } else if (settingsModalBox.classList.contains('edit-list-name-active')) {
         // Change List Name
-        listName = smallModalInput.value;
-        closeSettingsInnerModal();
-        updateInfo();
+        if (smallModalInput.value != '') {
+            listName = smallModalInput.value;
+            closeSettingsInnerModal();
+            updateInfo();
+        }
     } else if (settingsModalBox.classList.contains('reset-list-active')) {
         // Reset List
+    } else if (settingsModalBox.classList.contains('add-to-do-active')) {
+        // Add Item to List (Small Screen)
+        if (smallModalInput.value !== '') {
+            addToDo();
+        }
     }
 });
 
@@ -232,14 +243,14 @@ document.addEventListener('keydown', (e) => {
     if (pressed === 'Enter') {
         if (settingsInnerContainer.classList.contains('active')) {
             if (settingsModalBox.classList.contains('edit-username-active')) {
-                if (smallModalInput.value !== '') {
+                if (smallModalInput.value != '') {
                     // Change Username
                     username = smallModalInput.value;
                     closeSettingsInnerModal();
                     updateInfo();
                 }
             } else if (settingsModalBox.classList.contains('edit-list-name-active')) {
-                if (smallModalInput.value !== '') {
+                if (smallModalInput.value != '') {
                     // Change List Name
                     listName = smallModalInput.value;
                     closeSettingsInnerModal();
@@ -247,6 +258,16 @@ document.addEventListener('keydown', (e) => {
                 }
             } else if (settingsModalBox.classList.contains('reset-list-active')) {
                 // Reset List
+            } else if (settingsModalBox.classList.contains('add-to-do-active')) {
+                // Add Item to List (Small Screen)
+                if (smallModalInput.value !== '') {
+                    addToDo();
+                }
+            }
+        } else if (addInputLg === document.activeElement) {
+            // Add Item to List (Large Screen)
+            if (addInputLg.value !== '') {
+                addToDo();
             }
         }
     } else if (pressed === 'Escape') {
@@ -258,3 +279,40 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+
+// ---------- 📥 'Add' To-Do Items 📥 --------------
+const addBtnLg = document.getElementById('addBtnLg');
+const addInputLg = document.getElementById('addInputLg');
+const addBtnSm = document.getElementById('addBtnSm');
+
+function openAddToDoModal() {
+    openSettingsInnerModal();
+    smallModalHeader.innerHTML = '<span class="highlight">Add</span> a To-Do Item';
+    smallModalP1.innerHTML = 'Write a new to-do entry below:';
+    smallModalP2.style.display = 'none';
+    smallModalInput.style.display = 'flex';
+    smallModalInput.placeholder = 'Add a To-Do Entry...';
+    smallModalBtnMain.classList.add('btn-primary');
+    smallModalBtnMain.classList.remove('btn-negative');
+    smallModalBtnMain.textContent = 'Add';
+
+    settingsModalBox.classList.add('add-to-do-active');
+}
+
+function addToDo() {
+    if (settingsModalBox.classList.contains('add-to-do-active')) {
+        console.log('Small input value added!');
+
+        settingsModalBox.classList.remove('add-to-do-active');
+
+        closeSettingsInnerModal();
+    } else {
+        if (addInputLg.value !== '') {
+            console.log('Big input value added!');
+        }
+    }
+}
+
+addBtnLg.addEventListener('click', addToDo);
+addBtnSm.addEventListener('click', openAddToDoModal);
