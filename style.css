@@ -553,6 +553,7 @@ html, body {
     bottom: 3rem;
     right: 3rem;
     display: none;
+    z-index: 70;
 }
 
 .add-btn-small {
@@ -767,6 +768,7 @@ html, body {
     border: .1rem solid var(--color-dark);
     border-style: dashed;
     border-radius: .5rem;
+    display: none; /* Empty List Removed */
 }
 
 .empty-list-display i {
@@ -782,6 +784,80 @@ html, body {
     line-height: 1.5;
     opacity: .5;
 }
+
+/* List Item Container */
+.list-item-container {
+    width: 80%;
+    margin: 3rem auto 0 auto;
+}
+
+/* Filter Items */
+.filter-items {
+    width: 100%;
+    height: 4rem;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-box {
+    background-color: var(--color-light);
+    color: gray;
+    height: 4rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: .1rem solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-box:hover {
+    border: .1rem solid lightgray;
+    cursor: pointer;
+}
+
+.filter-box:not(:first-child), .filter-box:not(:last-child) {
+    margin: 0 .1rem;
+}
+
+.filter-box--icon {
+    width: 4rem;
+}
+
+.filter-box--text {
+    flex: 1;
+}
+
+.filter-box--small {
+    padding: 2rem;
+}
+
+.fa-exchange-alt {
+    transform: rotate(90deg);
+}
+
+.filter-active {
+    background-color: var(--color-primary);
+    color: white;
+    border: .1rem solid var(--color-primary);
+}
+
+.filter-active:hover {
+    cursor: default;
+    border: .1rem solid var(--color-primary);
+}
+
+.filter-items-main {
+    display: flex;
+}
+
+.filter-items-small {
+    display: none;
+}
+
+
 
 
 .emphasis {
@@ -821,7 +897,7 @@ html, body {
     }
     .list {
         min-width: 100%;
-        height: 100%;
+        min-height: 100%;
         padding: 1rem 5rem;
         border-radius: 0;
         box-shadow: none;
@@ -944,5 +1020,17 @@ html, body {
     }
     .empty-list-display {
         width: 100%;
+    }
+    .list-item-container {
+        width: 100%;
+    }
+    .filter-items-main {
+        display: none;
+    }
+    .filter-items-small {
+        display: flex;
+    }
+    .filter-box--icon {
+        flex: 1;
     }
 }
