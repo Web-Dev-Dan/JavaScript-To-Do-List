@@ -175,7 +175,7 @@
 
         <!-- Add Button (Small Screens) -->
         <div class="add-btn-container">
-            <button class="add-btn-small">
+            <button id="addBtnSm" class="add-btn-small">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
@@ -215,8 +215,8 @@
                 </div>
                 <!-- 'Add' Container -->
                 <div class="input-container">
-                    <input class="input" type="text" placeholder="Add a To-Do Entry...">
-                    <button>Add <i class="fas fa-plus"></i></button>
+                    <input id="addInputLg" class="input" type="text" placeholder="Add a To-Do Entry...">
+                    <button id="addBtnLg">Add <i class="fas fa-plus"></i></button>
                 </div>
                 <!-- Empty List Display -->
                 <div class="empty-list-display">
@@ -224,6 +224,48 @@
                     <p>Looks like your to-do list is currently empty!</p>
                 </div>
                 <!-- List Item Container -->
+                <div class="list-item-container">
+                    <!-- Filter Items (Large Screens) -->
+                    <div class="filter-items filter-items-main">
+                        <div class="filter-box filter-box--icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="filter-box filter-box--small filter-active">
+                            <p>All</p>
+                        </div>
+                        <div class="filter-box filter-box--text">
+                            <p>Complete</p>
+                        </div>
+                        <div class="filter-box filter-box--text">
+                            <p>Incomplete</p>
+                        </div>
+                        <div class="filter-box filter-box--icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <!-- Filter Items (Small Screens) -->
+                    <div class="filter-items filter-items-small">
+                        <div class="filter-box filter-box--icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="filter-box filter-box--small filter-active">
+                            <p>All</p>
+                        </div>
+                        <div class="filter-box filter-box--icon">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <div class="filter-box filter-box--icon">
+                            <i class="fas fa-hourglass"></i>
+                        </div>
+                        <div class="filter-box filter-box--icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <!-- To-Do Item Container -->
+                    <div class="to-do-item-container">
+                        <!-- To-Do Items -->
+                    </div>
+                </div>
             </main>
         </div>
 
