@@ -310,6 +310,7 @@ function addToDo() {
     } else {
         if (addInputLg.value !== '') {
             console.log('Big input value added!');
+            addInputLg.value = '';
         }
     }
 }
