@@ -602,6 +602,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     transition: all .3s;
+    z-index: 30;
 }
 
 .header h1 {
@@ -768,7 +769,7 @@ html, body {
     border: .1rem solid var(--color-dark);
     border-style: dashed;
     border-radius: .5rem;
-    display: none; /* Empty List Removed */
+    /* display: none; */
 }
 
 .empty-list-display i {
@@ -789,6 +790,8 @@ html, body {
 .list-item-container {
     width: 80%;
     margin: 3rem auto 0 auto;
+    display: none;
+    flex-direction: column;
 }
 
 /* Filter Items */
@@ -871,6 +874,7 @@ html, body {
     transition: all .3s;
     position: relative;
     display: flex;
+    overflow: hidden;
 }
 
 .to-do-item:hover {
@@ -891,6 +895,7 @@ html, body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: all .3s;
     z-index: 10;
 }
 
@@ -904,6 +909,30 @@ html, body {
 .to-do-item i:hover {
     cursor: pointer;
     filter: brightness(90%);
+}
+
+.to-do-item i.fa-check-circle:hover {
+    cursor: default;
+    filter: brightness(100%);
+}
+
+.star-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -10%;
+    display: none;
+    justify-content: left;
+    align-items: center;
+    overflow: hidden;
+}
+
+.star-container i {
+    color: var(--color-primary);
+    font-size: 10rem;
+    opacity: .2;
+    transform: rotate(20deg);
 }
 
 .item-content-main {
@@ -962,6 +991,10 @@ html, body {
 /* Add border on prioritised */
 .item-priority {
     border: .2rem solid var(--color-primary);
+}
+
+.item-priority .star-container {
+    display: flex;
 }
 
 
