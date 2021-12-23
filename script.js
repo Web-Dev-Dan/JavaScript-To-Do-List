@@ -437,12 +437,39 @@ addBtnLg.addEventListener('click', addToDo);
 addBtnSm.addEventListener('click', openAddToDoModal);
 
 
+// ---------- 🔎 Filter Items 🔍 --------------
+const toDoItemcontainer = document.querySelector('.to-do-item-container');
+const toggleOrderBtn = document.querySelectorAll('#toggleOrderBtn');
+const toggleAllBtn = document.querySelectorAll('#toggleAllBtn');
+const toggleCompleteBtn = document.querySelectorAll('#toggleCompleteBtn');
+const toggleIncompleteBtn = document.querySelectorAll('#toggleIncompleteBtn');
+const togglePrioritisedBtn = document.querySelectorAll('#togglePrioritisedBtn');
+
+
 // ---------- ✅⭐️🛠❌ To-Do Item Functionality ✅⭐️🛠❌ --------------
 function completeToDoItem(item, icon) {
     item.classList.add('item-complete');
     icon.classList.remove('far', 'fa-circle');
     icon.classList.add('fas', 'fa-check-circle');
     icon.removeAttribute('id');
+}
+
+function prioritiseToDoItem(item, icon) {
+    if (item.classList.contains('item-complete')) {
+        // Nothing happens
+    } else {
+        if (item.classList.contains('item-priority')) {
+            item.classList.remove('item-priority');
+            icon.classList.add('far');
+            icon.classList.remove('fas');
+            icon.style.color = '#808080';
+        } else {
+            item.classList.add('item-priority');
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+            icon.style.color = 'var(--color-primary)';
+        }
+    }
 }
 
 function checkClickedIcon(e) {
@@ -453,14 +480,13 @@ function checkClickedIcon(e) {
     const clickedToDoItem = clickedGrandparent.parentElement;
 
     if (clickedIcon.id === 'checkboxIcon') {
-        console.log('This is a checkbox icon!');
         completeToDoItem(clickedToDoItem, clickedIcon);
     } else if (clickedIcon.id === 'prioritiseIcon') {
-        console.log('This is a prioritise icon!');
+        prioritiseToDoItem(clickedToDoItem, clickedIcon);
     } else if (clickedIcon.id === 'editIcon') {
-        console.log('This is a edit icon!');
+
     } else if (clickedIcon.id === 'removeIcon') {
-        console.log('This is a remove icon!');
+
     }
 }
 
