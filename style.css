@@ -864,6 +864,12 @@ html, body {
 .to-do-item-container {
     width: 120%;
     transform: translateX(-10%);
+    display: flex;
+    flex-direction: column;
+}
+
+.to-do-item-container-reverse {
+    flex-direction: column-reverse;
 }
 
 /* To-Do Item */
