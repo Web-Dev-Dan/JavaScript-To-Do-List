@@ -26,6 +26,23 @@ sunIcon.addEventListener('click', toggleDarkMode);
 moonIcon.addEventListener('click', toggleLightMode);
 
 
+// ---------- 📅 Date 📅 --------------
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const newDate = new Date();
+const day = newDate.getDay();
+const date = newDate.getDate();
+const month = newDate.getMonth();
+const year = newDate.getFullYear();
+
+const todaysFullDate = `${weekdays[day]} ${date} ${months[month]}, ${year}`;
+
+function printDate() {
+    return `Added ${todaysFullDate}`;
+}
+
+
 // ---------- 📄 Toggle Modals 📄 --------------
 const settingsBtn = document.getElementById('settingsBtn');
 const modalBackground = document.querySelector('.modal-background');
@@ -85,6 +102,7 @@ colourBtn.forEach((colour) => {
 // ---------- 📊 List Details 📊 --------------
 let listName = 'To-Do List';
 let username = 'User';
+let listedTodos = 0;
 
 const usernameText = document.querySelectorAll('.username');
 const listNameText = document.querySelectorAll('.listName');
@@ -286,6 +304,9 @@ const addBtnLg = document.getElementById('addBtnLg');
 const addInputLg = document.getElementById('addInputLg');
 const addBtnSm = document.getElementById('addBtnSm');
 
+const emptyListDisplay = document.querySelector('.empty-list-display');
+const listItemContainer = document.querySelector('.list-item-container');
+
 function openAddToDoModal() {
     openSettingsInnerModal();
     smallModalHeader.innerHTML = '<span class="highlight">Add</span> a To-Do Item';
@@ -300,16 +321,107 @@ function openAddToDoModal() {
     settingsModalBox.classList.add('add-to-do-active');
 }
 
+function createNewToDo(listContent) {
+    listedTodos++;
+
+    const toDoItemContainer = document.querySelector('.to-do-item-container');
+
+    // Create a new to-do item
+    const newToDoItem = document.createElement('div');
+    newToDoItem.classList.add('to-do-item');
+    toDoItemContainer.appendChild(newToDoItem);
+
+    const newToDoItemBackground = document.createElement('div');
+    newToDoItemBackground.classList.add('to-do-item-background');
+    newToDoItem.appendChild(newToDoItemBackground);
+
+    const newStarContainer = document.createElement('div');
+    newStarContainer.classList.add('star-container');
+    newToDoItem.appendChild(newStarContainer);
+
+    const newStarContainerIcon = document.createElement('i');
+    newStarContainerIcon.classList.add('fas', 'fa-star');
+    newStarContainer.appendChild(newStarContainerIcon);
+
+    const newItemContentMain = document.createElement('div');
+    newItemContentMain.classList.add('item-content-main');
+    newToDoItem.appendChild(newItemContentMain);
+
+    const newToDoItemCheckbox = document.createElement('div');
+    newToDoItemCheckbox.classList.add('to-do-item--checkbox');
+    newItemContentMain.appendChild(newToDoItemCheckbox);
+
+    const newToDoItemCheckboxIcon = document.createElement('i');
+    newToDoItemCheckboxIcon.classList.add('far', 'fa-circle', 'fa-2x');
+    newToDoItemCheckbox.appendChild(newToDoItemCheckboxIcon);
+
+    const toDoItemContent = document.createElement('div');
+    toDoItemContent.classList.add('to-do-item--content');
+    newItemContentMain.appendChild(toDoItemContent);
+
+    const newContentText = document.createElement('div');
+    newContentText.classList.add('content-text');
+    toDoItemContent.appendChild(newContentText);
+
+    const newContentTextToDo = document.createElement('p');
+    newContentTextToDo.classList.add('content-text--to-do');
+    newContentText.appendChild(newContentTextToDo);
+    newContentTextToDo.textContent = listContent;
+
+    const newContentTextDate = document.createElement('p');
+    newContentTextDate.classList.add('content-text--date');
+    newContentText.appendChild(newContentTextDate);
+    newContentTextDate.textContent = `${printDate()}`;
+
+    const newItemContentIcons = document.createElement('div');
+    newItemContentIcons.classList.add('item-content-icons');
+    newToDoItem.appendChild(newItemContentIcons);
+
+    const newToDoItemPriority = document.createElement('div');
+    newToDoItemPriority.classList.add('to-do-item--priority');
+    newItemContentIcons.appendChild(newToDoItemPriority);
+
+    const newToDoItemPriorityIcon = document.createElement('i');
+    newToDoItemPriorityIcon.classList.add('far', 'fa-star');
+    newToDoItemPriority.appendChild(newToDoItemPriorityIcon);
+
+    const newToDoItemEdit = document.createElement('div');
+    newToDoItemEdit.classList.add('to-do-item--edit');
+    newItemContentIcons.appendChild(newToDoItemEdit);
+
+    const newToDoItemEditIcon = document.createElement('i');
+    newToDoItemEditIcon.classList.add('fas', 'fa-edit');
+    newToDoItemEdit.appendChild(newToDoItemEditIcon);
+
+    const newToDoItemRemove = document.createElement('div');
+    newToDoItemRemove.classList.add('to-do-item--remove');
+    newItemContentIcons.appendChild(newToDoItemRemove);
+
+    const newToDoItemRemoveIcon = document.createElement('i');
+    newToDoItemRemoveIcon.classList.add('fas', 'fa-trash-alt');
+    newToDoItemRemove.appendChild(newToDoItemRemoveIcon);
+}
+
+function checkListedToDos() {
+    if (listedTodos > 0) {
+        emptyListDisplay.style.display = 'none';
+        listItemContainer.style.display = 'flex';
+    } else {
+        emptyListDisplay.style.display = 'flex';
+        listItemContainer.style.display = 'none';
+    }
+}
+
 function addToDo() {
     if (settingsModalBox.classList.contains('add-to-do-active')) {
-        console.log(`Small input value added! ("${smallModalInput.value}")`);
-
         settingsModalBox.classList.remove('add-to-do-active');
-
+        createNewToDo(smallModalInput.value);
+        checkListedToDos();
         closeSettingsInnerModal();
     } else {
         if (addInputLg.value != '') {
-            console.log(`Big input value added! ("${addInputLg.value}")`);
+            createNewToDo(addInputLg.value);
+            checkListedToDos();
             addInputLg.value = '';
         }
     }
