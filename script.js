@@ -302,14 +302,14 @@ function openAddToDoModal() {
 
 function addToDo() {
     if (settingsModalBox.classList.contains('add-to-do-active')) {
-        console.log('Small input value added!');
+        console.log(`Small input value added! ("${smallModalInput.value}")`);
 
         settingsModalBox.classList.remove('add-to-do-active');
 
         closeSettingsInnerModal();
     } else {
-        if (addInputLg.value !== '') {
-            console.log('Big input value added!');
+        if (addInputLg.value != '') {
+            console.log(`Big input value added! ("${addInputLg.value}")`);
             addInputLg.value = '';
         }
     }
