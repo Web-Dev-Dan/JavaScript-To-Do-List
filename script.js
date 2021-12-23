@@ -103,6 +103,8 @@ colourBtn.forEach((colour) => {
 let listName = 'To-Do List';
 let username = 'User';
 let listedTodos = 0;
+let prioritisedTodos = 0;
+let completedTodos = 0;
 
 const usernameText = document.querySelectorAll('.username');
 const listNameText = document.querySelectorAll('.listName');
@@ -354,6 +356,7 @@ function createNewToDo(listContent) {
     const newToDoItemCheckboxIcon = document.createElement('i');
     newToDoItemCheckboxIcon.classList.add('far', 'fa-circle', 'fa-2x');
     newToDoItemCheckbox.appendChild(newToDoItemCheckboxIcon);
+    newToDoItemCheckboxIcon.id = 'checkboxIcon';
 
     const toDoItemContent = document.createElement('div');
     toDoItemContent.classList.add('to-do-item--content');
@@ -384,6 +387,7 @@ function createNewToDo(listContent) {
     const newToDoItemPriorityIcon = document.createElement('i');
     newToDoItemPriorityIcon.classList.add('far', 'fa-star');
     newToDoItemPriority.appendChild(newToDoItemPriorityIcon);
+    newToDoItemPriorityIcon.id = 'prioritiseIcon';
 
     const newToDoItemEdit = document.createElement('div');
     newToDoItemEdit.classList.add('to-do-item--edit');
@@ -392,6 +396,7 @@ function createNewToDo(listContent) {
     const newToDoItemEditIcon = document.createElement('i');
     newToDoItemEditIcon.classList.add('fas', 'fa-edit');
     newToDoItemEdit.appendChild(newToDoItemEditIcon);
+    newToDoItemEditIcon.id = 'editIcon';
 
     const newToDoItemRemove = document.createElement('div');
     newToDoItemRemove.classList.add('to-do-item--remove');
@@ -400,6 +405,7 @@ function createNewToDo(listContent) {
     const newToDoItemRemoveIcon = document.createElement('i');
     newToDoItemRemoveIcon.classList.add('fas', 'fa-trash-alt');
     newToDoItemRemove.appendChild(newToDoItemRemoveIcon);
+    newToDoItemRemoveIcon.id = 'removeIcon';
 }
 
 function checkListedToDos() {
@@ -429,3 +435,33 @@ function addToDo() {
 
 addBtnLg.addEventListener('click', addToDo);
 addBtnSm.addEventListener('click', openAddToDoModal);
+
+
+// ---------- ✅⭐️🛠❌ To-Do Item Functionality ✅⭐️🛠❌ --------------
+function completeToDoItem(item, icon) {
+    item.classList.add('item-complete');
+    icon.classList.remove('far', 'fa-circle');
+    icon.classList.add('fas', 'fa-check-circle');
+    icon.removeAttribute('id');
+}
+
+function checkClickedIcon(e) {
+    const clickedIcon = e.target;
+
+    const clickedParent = clickedIcon.parentElement;
+    const clickedGrandparent = clickedParent.parentElement;
+    const clickedToDoItem = clickedGrandparent.parentElement;
+
+    if (clickedIcon.id === 'checkboxIcon') {
+        console.log('This is a checkbox icon!');
+        completeToDoItem(clickedToDoItem, clickedIcon);
+    } else if (clickedIcon.id === 'prioritiseIcon') {
+        console.log('This is a prioritise icon!');
+    } else if (clickedIcon.id === 'editIcon') {
+        console.log('This is a edit icon!');
+    } else if (clickedIcon.id === 'removeIcon') {
+        console.log('This is a remove icon!');
+    }
+}
+
+document.addEventListener('click', checkClickedIcon);
