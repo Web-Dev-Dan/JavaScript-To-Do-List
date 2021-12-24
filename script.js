@@ -63,6 +63,8 @@ function openSettings() {
     openModalBackground();
     settingsModal.style.display = 'flex';
     settingsModal.classList.add('settings-modal-active');
+
+    updateStats();
 }
 
 settingsBtn.addEventListener('click', openSettings);
@@ -232,9 +234,15 @@ let username = 'User';
 
 let targetItem;
 
-let listedTodos = 0;
-let prioritisedTodos = 0;
-let completedTodos = 0;
+let toDos = 0; /* Total on display (complete and incomplete) */
+let listedTodos = 0; /* Pending Items */
+let prioritisedTodos = 0; /* Prioritised Items */
+let completedTodos = 0; /* Completed Items */
+
+let completeClicks = 0;
+let createClicks = 0;
+let editClicks = 0;
+let deleteClicks = 0;
 
 const usernameText = document.querySelectorAll('.username');
 const listNameText = document.querySelectorAll('.listName');
@@ -248,6 +256,27 @@ usernameText.forEach((name) => {
 listNameText.forEach((name) => {
     name.textContent = listName;
 });
+
+
+// ---------- 📊 Update Stats 📊 --------------
+function updateStats() {
+    const itemsCompletedText = document.getElementById('itemsCompletedText');
+    const itemsCreatedText = document.getElementById('itemsCreatedText');
+    const itemEditsText = document.getElementById('itemEditsText');
+    const itemsDeletedText = document.getElementById('itemsDeletedText');
+    const pendingItemsText = document.getElementById('pendingItemsText');
+    const prioritisedItemsText = document.getElementById('prioritisedItemsText');
+
+    itemsCompletedText.textContent = completeClicks;
+    itemsCreatedText.textContent = createClicks;
+    itemEditsText.textContent = editClicks;
+    itemsDeletedText.textContent = deleteClicks;
+
+    pendingItemsText.textContent = listedTodos;
+    prioritisedItemsText.textContent = prioritisedTodos;
+
+    console.log(completedTodos);
+}
 
 
 // ---------- 📝 'Settings' Inner Modal 📝 --------------
@@ -416,6 +445,8 @@ smallModalBtnMain.addEventListener('click', () => {
             listedTodos--;
         }
         targetItem.remove();
+        deleteClicks++;
+        toDos--;
         closeSettingsInnerModal();
         updateInfo();
         checkListedToDos();
@@ -465,6 +496,8 @@ document.addEventListener('keydown', (e) => {
                     listedTodos--;
                 }
                 targetItem.remove();
+                deleteClicks++;
+                toDos--;
                 closeSettingsInnerModal();
                 updateInfo();
                 checkListedToDos();
@@ -510,6 +543,9 @@ function openAddToDoModal() {
 }
 
 function createNewToDo(listContent) {
+    toDos++;
+    createClicks++;
+    console.log(`${toDos} to-dos`);
     listedTodos++;
 
     const toDoItemContainer = document.querySelector('.to-do-item-container');
@@ -595,7 +631,7 @@ function createNewToDo(listContent) {
 }
 
 function checkListedToDos() {
-    if (listedTodos > 0) {
+    if (toDos > 0) {
         emptyListDisplay.style.display = 'none';
         listItemContainer.style.display = 'flex';
     } else {
@@ -634,10 +670,12 @@ function completeToDoItem(item, icon) {
         listedTodos--;
         prioritisedTodos--;
         completedTodos++;
+        completeClicks++;
         updateInfo();
     } else {
         listedTodos--;
         completedTodos++;
+        completeClicks++;
         updateInfo();
     }
 }
@@ -689,9 +727,8 @@ function checkClickedIcon(e) {
     } else if (clickedIcon.id === 'prioritiseIcon') {
         prioritiseToDoItem(clickedToDoItem, clickedIcon);
     } else if (clickedIcon.id === 'editIcon') {
-        
+
     } else if (clickedIcon.id === 'removeIcon') {
-        
         openDeleteItemModal();
         targetItem = clickedToDoItem;
     }
