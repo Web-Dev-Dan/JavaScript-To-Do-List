@@ -429,6 +429,7 @@ smallModalBtnMain.addEventListener('click', () => {
         // Add Item to List (Small Screen)
         if (smallModalInput.value !== '') {
             addToDo();
+            updateInfo();
         }
     } else if (settingsModalBox.classList.contains('delete-item-active')) {
         // Delete Item
@@ -545,7 +546,6 @@ function openAddToDoModal() {
 function createNewToDo(listContent) {
     toDos++;
     createClicks++;
-    console.log(`${toDos} to-dos`);
     listedTodos++;
 
     const toDoItemContainer = document.querySelector('.to-do-item-container');
