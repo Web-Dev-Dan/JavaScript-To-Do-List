@@ -99,15 +99,147 @@ colourBtn.forEach((colour) => {
 });
 
 
+// ---------- 🔎 Filter Items 🔍 --------------
+const toDoItemcontainer = document.querySelector('.to-do-item-container');
+
+const toggleOrderBtn = document.querySelectorAll('#toggleOrderBtn');
+const toggleAllBtn = document.querySelectorAll('#toggleAllBtn');
+const toggleCompleteBtn = document.querySelectorAll('#toggleCompleteBtn');
+const toggleIncompleteBtn = document.querySelectorAll('#toggleIncompleteBtn');
+const togglePrioritisedBtn = document.querySelectorAll('#togglePrioritisedBtn');
+
+// Toggle List Order
+toggleOrderBtn.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+        toDoItemcontainer.classList.toggle('to-do-item-container-reverse');
+    });
+});
+
+// 🔎📝 Show All:
+toggleAllBtn.forEach((filter) => {
+    filter.addEventListener('click', () => {
+        filter.classList.add('filter-active');
+
+        toggleCompleteBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        toggleIncompleteBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        togglePrioritisedBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+
+        const toDoItem = document.querySelectorAll('.to-do-item');
+
+        toDoItem.forEach((item) => {
+            if (item) {
+                item.style.display = 'flex';
+            }
+        });
+    });
+});
+
+// 🔎✅ Show Complete:
+toggleCompleteBtn.forEach((filter) => {
+    filter.addEventListener('click', () => {
+        filter.classList.add('filter-active');
+
+        toggleAllBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        toggleIncompleteBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        togglePrioritisedBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+
+        const toDoItem = document.querySelectorAll('.to-do-item');
+
+        toDoItem.forEach((item) => {
+            if (item.classList.contains('item-complete')) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+
+// 🔎❌ Show Incomplete:
+toggleIncompleteBtn.forEach((filter) => {
+    filter.addEventListener('click', () => {
+        filter.classList.add('filter-active');
+
+        toggleAllBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        toggleCompleteBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        togglePrioritisedBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+
+        const toDoItem = document.querySelectorAll('.to-do-item');
+
+        toDoItem.forEach((item) => {
+            if (item.classList.contains('item-complete')) {
+                item.style.display = 'none';
+            } else {
+                item.style.display = 'flex';
+            }
+        });
+    });
+});
+
+// 🔎⭐️ Show Prioritised:
+togglePrioritisedBtn.forEach((filter) => {
+    filter.addEventListener('click', () => {
+        filter.classList.add('filter-active');
+
+        toggleAllBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        toggleCompleteBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+        toggleIncompleteBtn.forEach((button) => {
+            button.classList.remove('filter-active');
+        });
+
+        const toDoItem = document.querySelectorAll('.to-do-item');
+
+        toDoItem.forEach((item) => {
+            if (item.classList.contains('item-priority')) {
+                if (item.classList.contains('item-complete')) {
+                    item.style.display = 'none';
+                } else {
+                    item.style.display = 'flex';
+                }
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+
+
 // ---------- 📊 List Details 📊 --------------
 let listName = 'To-Do List';
 let username = 'User';
+
+let targetItem;
+
 let listedTodos = 0;
 let prioritisedTodos = 0;
 let completedTodos = 0;
 
 const usernameText = document.querySelectorAll('.username');
 const listNameText = document.querySelectorAll('.listName');
+const listedTodosText = document.getElementById('listedTodosText');
+const prioritisedTodosText = document.getElementById('prioritisedTodosText');
 
 usernameText.forEach((name) => {
     name.textContent = username;
@@ -228,6 +360,22 @@ function updateInfo() {
     listNameText.forEach((name) => {
         name.textContent = listName;
     });
+
+    if (listedTodos === 1) {
+        listedTodosText.innerHTML = `There is currently <span class="emphasis">${listedTodos} item</span> pending on your
+        list.`;
+    } else {
+        listedTodosText.innerHTML = `There are currently <span class="emphasis">${listedTodos} items</span> pending on your
+        list.`;
+    }
+
+    if (prioritisedTodos === 1) {
+        prioritisedTodosText.innerHTML = `You have <span class="emphasis">${prioritisedTodos} prioritised item</span>.`;
+
+    } else {
+        prioritisedTodosText.innerHTML = `You have <span class="emphasis">${prioritisedTodos} prioritised items</span>.`;
+
+    }
 }
 
 // Submit decision on click
@@ -253,6 +401,24 @@ smallModalBtnMain.addEventListener('click', () => {
         if (smallModalInput.value !== '') {
             addToDo();
         }
+    } else if (settingsModalBox.classList.contains('delete-item-active')) {
+        // Delete Item
+        if (targetItem.classList.contains('item-priority')) {
+            if (targetItem.classList.contains('item-complete')) {
+                // Nothing happens
+            } else {
+                listedTodos--;
+                prioritisedTodos--;
+            }
+        } else if (targetItem.classList.contains('item-complete')) {
+            // Nothing happens
+        } else {
+            listedTodos--;
+        }
+        targetItem.remove();
+        closeSettingsInnerModal();
+        updateInfo();
+        checkListedToDos();
     }
 });
 
@@ -282,12 +448,32 @@ document.addEventListener('keydown', (e) => {
                 // Add Item to List (Small Screen)
                 if (smallModalInput.value !== '') {
                     addToDo();
+                    updateInfo();
                 }
+            } else if (settingsModalBox.classList.contains('delete-item-active')) {
+                // Delete Item
+                if (targetItem.classList.contains('item-priority')) {
+                    if (targetItem.classList.contains('item-complete')) {
+                        // Nothing happens
+                    } else {
+                        listedTodos--;
+                        prioritisedTodos--;
+                    }
+                } else if (targetItem.classList.contains('item-complete')) {
+                    // Nothing happens
+                } else {
+                    listedTodos--;
+                }
+                targetItem.remove();
+                closeSettingsInnerModal();
+                updateInfo();
+                checkListedToDos();
             }
         } else if (addInputLg === document.activeElement) {
             // Add Item to List (Large Screen)
             if (addInputLg.value !== '') {
                 addToDo();
+                updateInfo();
             }
         }
     } else if (pressed === 'Escape') {
@@ -437,21 +623,23 @@ addBtnLg.addEventListener('click', addToDo);
 addBtnSm.addEventListener('click', openAddToDoModal);
 
 
-// ---------- 🔎 Filter Items 🔍 --------------
-const toDoItemcontainer = document.querySelector('.to-do-item-container');
-const toggleOrderBtn = document.querySelectorAll('#toggleOrderBtn');
-const toggleAllBtn = document.querySelectorAll('#toggleAllBtn');
-const toggleCompleteBtn = document.querySelectorAll('#toggleCompleteBtn');
-const toggleIncompleteBtn = document.querySelectorAll('#toggleIncompleteBtn');
-const togglePrioritisedBtn = document.querySelectorAll('#togglePrioritisedBtn');
-
-
 // ---------- ✅⭐️🛠❌ To-Do Item Functionality ✅⭐️🛠❌ --------------
 function completeToDoItem(item, icon) {
     item.classList.add('item-complete');
     icon.classList.remove('far', 'fa-circle');
     icon.classList.add('fas', 'fa-check-circle');
     icon.removeAttribute('id');
+
+    if (item.classList.contains('item-priority')) {
+        listedTodos--;
+        prioritisedTodos--;
+        completedTodos++;
+        updateInfo();
+    } else {
+        listedTodos--;
+        completedTodos++;
+        updateInfo();
+    }
 }
 
 function prioritiseToDoItem(item, icon) {
@@ -463,13 +651,30 @@ function prioritiseToDoItem(item, icon) {
             icon.classList.add('far');
             icon.classList.remove('fas');
             icon.style.color = '#808080';
+            prioritisedTodos--;
+            updateInfo();
         } else {
             item.classList.add('item-priority');
             icon.classList.remove('far');
             icon.classList.add('fas');
             icon.style.color = 'var(--color-primary)';
+            prioritisedTodos++;
+            updateInfo();
         }
     }
+}
+
+function openDeleteItemModal() {
+    openSettingsInnerModal();
+    smallModalHeader.innerHTML = '<span class="highlight-negative">Delete</span> Your To-Do Item?';
+    smallModalP1.innerHTML = 'You will be unable to recover your data once it has been deleted.';
+    smallModalP2.innerHTML = 'Are you sure?';
+    smallModalInput.style.display = 'none';
+    smallModalBtnMain.classList.add('btn-negative');
+    smallModalBtnMain.classList.remove('btn-primary');
+    smallModalBtnMain.textContent = 'Delete';
+
+    settingsModalBox.classList.add('delete-item-active');
 }
 
 function checkClickedIcon(e) {
@@ -484,9 +689,11 @@ function checkClickedIcon(e) {
     } else if (clickedIcon.id === 'prioritiseIcon') {
         prioritiseToDoItem(clickedToDoItem, clickedIcon);
     } else if (clickedIcon.id === 'editIcon') {
-
+        
     } else if (clickedIcon.id === 'removeIcon') {
-
+        
+        openDeleteItemModal();
+        targetItem = clickedToDoItem;
     }
 }
 
