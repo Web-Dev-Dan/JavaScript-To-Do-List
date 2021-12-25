@@ -1,5 +1,92 @@
 'use strict'
 
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+//SUGGESTIONS
+// Great work. You have nicely defined separation of concerns
+// This code can be improved by:
+//  - Helper functions to reduce repetiton
+//  - More pure functions and cleaner code. Most functions should only have one responsibility,
+// and should not be reaching out to th global scope. Rather provide arguments so functions can behave
+// independently
+// Very lengthy and complicated if / else statements
+
+// START WITH THE HELPER FUNCTIONS
+// These are generally to do with your dom manipulations, adding classes etc. 
+// Begin with v simple helpers, then combine them
+// EXAMPLE
+
+// START SMALL
+// function addClass(el, name){
+//     if(el.classList.contains(name)) return;
+//     el.classList.add(name);
+//     return el;
+// }
+
+// function addStyles(el, styles = {}){
+//     return el.styles = {...el.styles, styles}
+// }
+
+// THEN COMBINE THEM INTO MORE COMPLEX FUNCTIONS, STILL KEEPING THEM CLEAN
+
+// function classSetterForElWithExistingClass({
+//     el, // element
+//     requiredClass, // element must have this class
+//     addClasses = [], // classes to add 
+//     removeClasses = [], // classes to remove
+// }){
+//     if (!el || !requiredClass) throw new Error('Missing element or required class')
+//     if (!el.classList.contains(requiredClass)) return el;
+//     addClasses(el, addClasses);
+//     removeClasses(el, removeClasses); // these could go into a single helper function for adding and removing a list of classes
+//     return el;
+// }
+
+// // NOW, BEFORE YOU USE THESE FUNCTIONS IN YOUR CODE AND START GETTING BUGS, 
+// // FIRST TEST THEM
+// // CREATE A SEPARATE JS FILE, AND RUN SEPARATELY
+
+// // EXAMPLE OF TEST.JS FILE
+
+// const mockElement  = document.createElement('div');
+
+// const test1 = addClass(mockElement, 'myclass');
+// // YOU KNOW WHAT YOU ARE EXPECTING, SO CHECK THAT IS SO
+// if (!test1.classList.contains('myclass')) console.log('FAILED TEST: addClass()')
+// else console.log('PASSED TEST: addClass()')
+
+// const mockAddClasses = ['class1, class2']
+
+// const test2 = classSetterForElWithExistingClass({
+//     el: mockElement,
+//     requiredClass: 'myclass',
+//     addClasses: ['class1, class2']
+// })
+
+// mockAddClasses.forEach(mock => {
+//     if (!test2.classList.contains(mock)) console.log('TEST FAILED: mockAddClasses()')
+//     else  console.log('TEST PASSED: mockAddClasses()')
+// });
+
+
+// Once you are confident that your helpers are doing what they are supposed to do,
+// go and use them in your production code. Don't do it all once. Replace some portions of code, 
+// run it, check for bugs, then replace some more.
+
+
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+
+
+
 // ---------- 🔆 Toggle Light/Dark Mode 🌙 --------------
 const sunIcon = document.getElementById('sunIcon');
 const moonIcon = document.getElementById('moonIcon');
