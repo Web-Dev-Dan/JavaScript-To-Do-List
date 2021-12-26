@@ -30,16 +30,33 @@ moonIcon.addEventListener('click', toggleLightMode);
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const newDate = new Date();
-const day = newDate.getDay();
-const date = newDate.getDate();
-const month = newDate.getMonth();
-const year = newDate.getFullYear();
-
-const todaysFullDate = `${weekdays[day]} ${date} ${months[month]}, ${year}`;
+// const todaysFullDate = `${weekdays[day]} ${date} ${months[month]}, ${year}`;
 
 function printDate() {
-    return `Added ${todaysFullDate}`;
+    const newDate = new Date();
+    const day = newDate.getDay();
+    const date = newDate.getDate();
+    const month = newDate.getMonth();
+    const year = newDate.getFullYear();
+
+    return `Added ${weekdays[day]} ${date} ${months[month]}, ${year}`;
+}
+
+function printCurrentDate() {
+    const newDate = new Date();
+    const day = newDate.getDay();
+    const date = newDate.getDate();
+    const month = newDate.getMonth();
+    const year = newDate.getFullYear();
+
+    return `${weekdays[day]} ${date} ${months[month]}, ${year}`;
+}
+
+
+// ---------- ⏱ Time ⏱ --------------
+function printCurrentTime() {
+    const newDate = new Date();
+    return `${newDate.getHours()}:${newDate.getMinutes()}`;
 }
 
 
@@ -275,8 +292,6 @@ function updateStats() {
 
     pendingItemsText.textContent = listedTodos;
     prioritisedItemsText.textContent = prioritisedTodos;
-
-    console.log(completedTodos);
 }
 
 
@@ -436,10 +451,14 @@ smallModalBtnMain.addEventListener('click', () => {
         if (smallModalInput.value != '') {
             // Edit Item
             itemToEdit.textContent = smallModalInput.value;
+            recentActivityItem = smallModalInput.value;
+
             editClicks++;
             settingsModalBox.classList.remove('edit-item-active');
             closeSettingsInnerModal();
             updateInfo();
+            recentActivityType = 'edit';
+            checkRecentActivity();
         }
     } else if (settingsModalBox.classList.contains('delete-item-active')) {
         // Delete Item
@@ -455,12 +474,17 @@ smallModalBtnMain.addEventListener('click', () => {
         } else {
             listedTodos--;
         }
+        const recentActivityItemContainer = targetItem.querySelector('.content-text--to-do');
+        recentActivityItem = recentActivityItemContainer.textContent;
+
         targetItem.remove();
         deleteClicks++;
         toDos--;
         closeSettingsInnerModal();
         updateInfo();
         checkListedToDos();
+        recentActivityType = 'delete';
+        checkRecentActivity();
     }
 });
 
@@ -496,10 +520,14 @@ document.addEventListener('keydown', (e) => {
                 if (smallModalInput.value != '') {
                     // Edit Item
                     itemToEdit.textContent = smallModalInput.value;
+                    recentActivityItem = smallModalInput.value;
+
                     editClicks++;
                     settingsModalBox.classList.remove('edit-item-active');
                     closeSettingsInnerModal();
                     updateInfo();
+                    recentActivityType = 'edit';
+                    checkRecentActivity();
                 }
             } else if (settingsModalBox.classList.contains('delete-item-active')) {
                 // Delete Item
@@ -515,12 +543,17 @@ document.addEventListener('keydown', (e) => {
                 } else {
                     listedTodos--;
                 }
+                const recentActivityItemContainer = targetItem.querySelector('.content-text--to-do');
+                recentActivityItem = recentActivityItemContainer.textContent;
+
                 targetItem.remove();
                 deleteClicks++;
                 toDos--;
                 closeSettingsInnerModal();
                 updateInfo();
                 checkListedToDos();
+                recentActivityType = 'delete';
+                checkRecentActivity();
             }
         } else if (addInputLg === document.activeElement) {
             // Add Item to List (Large Screen)
@@ -612,6 +645,8 @@ function createNewToDo(listContent) {
     newContentText.appendChild(newContentTextToDo);
     newContentTextToDo.textContent = listContent;
 
+    recentActivityItem = listContent;
+
     const newContentTextDate = document.createElement('p');
     newContentTextDate.classList.add('content-text--date');
     newContentText.appendChild(newContentTextDate);
@@ -672,6 +707,8 @@ function addToDo() {
             addInputLg.value = '';
         }
     }
+    recentActivityType = 'add';
+    checkRecentActivity();
 }
 
 addBtnLg.addEventListener('click', addToDo);
@@ -680,6 +717,9 @@ addBtnSm.addEventListener('click', openAddToDoModal);
 
 // ---------- ✅⭐️🛠❌ To-Do Item Functionality ✅⭐️🛠❌ --------------
 function completeToDoItem(item, icon) {
+    const recentActivityItemContainer = item.querySelector('.content-text--to-do');
+    recentActivityItem = recentActivityItemContainer.textContent;
+
     item.classList.add('item-complete');
     icon.classList.remove('far', 'fa-circle');
     icon.classList.add('fas', 'fa-check-circle');
@@ -697,9 +737,14 @@ function completeToDoItem(item, icon) {
         completeClicks++;
         updateInfo();
     }
+    recentActivityType = 'complete';
+    checkRecentActivity();
 }
 
 function prioritiseToDoItem(item, icon) {
+    const recentActivityItemContainer = item.querySelector('.content-text--to-do');
+    recentActivityItem = recentActivityItemContainer.textContent;
+
     if (item.classList.contains('item-complete')) {
         // Nothing happens
     } else {
@@ -710,6 +755,8 @@ function prioritiseToDoItem(item, icon) {
             icon.style.color = '#808080';
             prioritisedTodos--;
             updateInfo();
+            recentActivityType = 'unprioritised';
+            checkRecentActivity();
         } else {
             item.classList.add('item-priority');
             icon.classList.remove('far');
@@ -717,6 +764,8 @@ function prioritiseToDoItem(item, icon) {
             icon.style.color = 'var(--color-primary)';
             prioritisedTodos++;
             updateInfo();
+            recentActivityType = 'priority';
+            checkRecentActivity();
         }
     }
 }
@@ -775,3 +824,43 @@ function checkClickedIcon(e) {
 }
 
 document.addEventListener('click', checkClickedIcon);
+
+
+// ---------- 🛎 Recent Activity 🛎 --------------
+const recentBox = document.querySelector('.recent-box');
+const recentBoxText = document.querySelector('.recent-box--text');
+const recentBoxItem = document.querySelector('.recent-box--item-text');
+const recentBoxEmpty = document.querySelector('.recent-box--empty');
+
+let recentActivityType;
+let recentActivityText;
+let recentActivityItem;
+
+function checkRecentActivity() {
+    if (recentActivityType) {
+        recentBox.style.display = 'flex';
+        recentBoxEmpty.style.display = 'none';
+        if (recentActivityType === 'add') {
+            recentBoxText.innerHTML = `The following item was <span class="emphasis highlight">added</span> to '${listName}' at ${printCurrentTime()} on ${printCurrentDate()}:`;
+            recentBoxItem.textContent = recentActivityItem;
+        } else if (recentActivityType === 'priority') {
+            recentBoxText.innerHTML = `The following item was <span class="emphasis highlight">prioritised</span> at ${printCurrentTime()} on ${printCurrentDate()}:`;
+            recentBoxItem.textContent = recentActivityItem;
+        } else if (recentActivityType === 'unprioritised') {
+            recentBoxText.innerHTML = `The following item was <span class="emphasis highlight">unprioritised</span> at ${printCurrentTime()} on ${printCurrentDate()}:`;
+            recentBoxItem.textContent = recentActivityItem;
+        } else if (recentActivityType === 'complete') {
+            recentBoxText.innerHTML = `The following item was <span class="emphasis highlight">completed</span> at ${printCurrentTime()} on ${printCurrentDate()}:`;
+            recentBoxItem.textContent = recentActivityItem;
+        } else if (recentActivityType === 'edit') {
+            recentBoxText.innerHTML = `The following item was <span class="emphasis highlight">edited</span> at ${printCurrentTime()} on ${printCurrentDate()}:`;
+            recentBoxItem.textContent = recentActivityItem;
+        } else if (recentActivityType === 'delete') {
+            recentBoxText.innerHTML = `The following item was <span class="emphasis highlight-negative">deleted</span> at ${printCurrentTime()} on ${printCurrentDate()}:`;
+            recentBoxItem.textContent = recentActivityItem;
+        }
+    } else {
+        recentBox.style.display = 'none';
+        recentBoxEmpty.style.display = 'flex';
+    }
+}
