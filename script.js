@@ -942,10 +942,14 @@ function updateProgress(xp) {
     progress += xp;
 
     calcProgressBar();
-    totalXPText.textContent = totalXP;
-    totalLevelText.textContent = level;
-    progressBar.style.width = `${progress}%`;
-    checkLevel(level);
+    try{
+        totalXPText.textContent = totalXP;
+        totalLevelText.textContent = level;
+        progressBar.style.width = `${progress}%`;
+        checkLevel(level);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 
