@@ -233,6 +233,7 @@ let listName = 'To-Do List';
 let username = 'User';
 
 let targetItem;
+let itemToEdit;
 
 let toDos = 0; /* Total on display (complete and incomplete) */
 let listedTodos = 0; /* Pending Items */
