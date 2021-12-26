@@ -410,6 +410,7 @@ html, body {
 
 .recent-box--empty {
     height: 10rem;
+    justify-content: center;
 }
 
 .recent-box--empty-inner {
@@ -423,7 +424,7 @@ html, body {
 
 .recent-box {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 3rem;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -432,7 +433,7 @@ html, body {
 
 .recent-box--item {
     width: 100%;
-    margin: 1rem auto;
+    margin: 2rem auto;
 }
 
 .recent-box p {
@@ -444,6 +445,9 @@ html, body {
 .recent-box--item p {
     font-size: 2rem;
     font-weight: 600;
+    margin: 0 2rem;
+    padding: 1rem;
+    border: .1rem solid var(--color-primary);
 }
 
 .progress-container {
@@ -1114,6 +1118,9 @@ html, body {
     }
     .recent-box--item p {
         font-size: 1.4rem;
+        margin: 0 2rem;
+        padding: 1rem;
+        border: .1rem solid var(--color-primary);
     }
     .progress-bar {
         width: 80%;
