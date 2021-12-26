@@ -56,7 +56,13 @@ function printCurrentDate() {
 // ---------- ⏱ Time ⏱ --------------
 function printCurrentTime() {
     const newDate = new Date();
-    return `${newDate.getHours()}:${newDate.getMinutes()}`;
+    const minutes = newDate.getMinutes();
+
+    if (minutes >= 0 && minutes <= 9) {
+        return `${newDate.getHours()}:0${minutes}`;
+    } else {
+        return `${newDate.getHours()}:${minutes}`;
+    }
 }
 
 
@@ -429,6 +435,9 @@ smallModalBtnMain.addEventListener('click', () => {
         // Change Username
         if (smallModalInput.value != '') {
             username = smallModalInput.value;
+            recentActivityType = 'edit-username';
+            recentActivityItem = smallModalInput.value;
+            checkRecentActivity();
             closeSettingsInnerModal();
             updateInfo();
         }
@@ -436,11 +445,15 @@ smallModalBtnMain.addEventListener('click', () => {
         // Change List Name
         if (smallModalInput.value != '') {
             listName = smallModalInput.value;
+            recentActivityType = 'edit-list-name';
+            recentActivityItem = smallModalInput.value;
+            checkRecentActivity();
             closeSettingsInnerModal();
             updateInfo();
         }
     } else if (settingsModalBox.classList.contains('reset-list-active')) {
         // Reset List
+        resetList();
     } else if (settingsModalBox.classList.contains('add-to-do-active')) {
         // Add Item to List (Small Screen)
         if (smallModalInput.value !== '') {
@@ -498,6 +511,9 @@ document.addEventListener('keydown', (e) => {
                 if (smallModalInput.value != '') {
                     // Change Username
                     username = smallModalInput.value;
+                    recentActivityType = 'edit-username';
+                    recentActivityItem = smallModalInput.value;
+                    checkRecentActivity();
                     closeSettingsInnerModal();
                     updateInfo();
                 }
@@ -505,11 +521,15 @@ document.addEventListener('keydown', (e) => {
                 if (smallModalInput.value != '') {
                     // Change List Name
                     listName = smallModalInput.value;
+                    recentActivityType = 'edit-list-name';
+                    recentActivityItem = smallModalInput.value;
+                    checkRecentActivity();
                     closeSettingsInnerModal();
                     updateInfo();
                 }
             } else if (settingsModalBox.classList.contains('reset-list-active')) {
                 // Reset List
+                resetList();
             } else if (settingsModalBox.classList.contains('add-to-do-active')) {
                 // Add Item to List (Small Screen)
                 if (smallModalInput.value !== '') {
@@ -599,6 +619,7 @@ function createNewToDo(listContent) {
     toDos++;
     createClicks++;
     listedTodos++;
+    updateProgress(5);
 
     const toDoItemContainer = document.querySelector('.to-do-item-container');
 
@@ -730,11 +751,13 @@ function completeToDoItem(item, icon) {
         prioritisedTodos--;
         completedTodos++;
         completeClicks++;
+        updateProgress(20);
         updateInfo();
     } else {
         listedTodos--;
         completedTodos++;
         completeClicks++;
+        updateProgress(10);
         updateInfo();
     }
     recentActivityType = 'complete';
@@ -858,9 +881,75 @@ function checkRecentActivity() {
         } else if (recentActivityType === 'delete') {
             recentBoxText.innerHTML = `The following item was <span class="emphasis highlight-negative">deleted</span> at ${printCurrentTime()} on ${printCurrentDate()}:`;
             recentBoxItem.textContent = recentActivityItem;
+        } else if (recentActivityType === 'edit-username') {
+            recentBoxText.innerHTML = `Username was <span class="emphasis highlight">edited</span> at ${printCurrentTime()} on ${printCurrentDate()} to:`;
+            recentBoxItem.textContent = recentActivityItem;
+        } else if (recentActivityType === 'edit-list-name') {
+            recentBoxText.innerHTML = `List name was <span class="emphasis highlight">edited</span> at ${printCurrentTime()} on ${printCurrentDate()} to:`;
+            recentBoxItem.textContent = recentActivityItem;
         }
     } else {
         recentBox.style.display = 'none';
         recentBoxEmpty.style.display = 'flex';
     }
+}
+
+
+// ---------- 📶 User Progress 📶 --------------
+let totalXP = 0;
+let level = 1;
+let progress = 0;
+let progressBar = document.querySelector('.progress-bar-inner');
+let quote;
+
+const totalXPText = document.querySelector('.total-xp-text');
+const totalLevelText = document.querySelector('.total-level-text');
+const quoteText = document.querySelector('.quote-text');
+
+function calcProgressBar() {
+    if (progress >= 100) {
+        progress -= 100;
+        level += 1;
+    }
+}
+
+function checkLevel(level) {
+    const lvl1Quotes = [`It's time to get productive!`, `What do you want to get done today?`, `Add tasks to your list and complete them to earn extra points!`, `You can earn 10 points when you complete a task, or 20 points when you complete a prioritised task!`, `You can get 5 points for simply creating a to-do item! What are you waiting for?`];
+    const lvl2Quotes = [...lvl1Quotes, `You're doing great! Keep going!`];
+    const lvl3Quotes = [...lvl2Quotes, `This is some productivity! There's no stopping you!`];
+    const lvl4Quotes = [...lvl3Quotes, `Level ${level}?! You're a task machine!`];
+
+    switch (level) {
+        case 1:
+            quoteText.textContent = lvl1Quotes[Math.floor(Math.random() * lvl1Quotes.length)];
+            break;
+        case 2:
+            quoteText.textContent = lvl2Quotes[Math.floor(Math.random() * lvl2Quotes.length)];
+            break;
+        case 3:
+            quoteText.textContent = lvl3Quotes[Math.floor(Math.random() * lvl3Quotes.length)];
+            break;
+        case 4:
+            quoteText.textContent = lvl4Quotes[Math.floor(Math.random() * lvl4Quotes.length)];
+            break;
+        default:
+            quoteText.textContent = `Level ${level}?! You're a task machine!`;
+    }
+}
+
+function updateProgress(xp) {
+    totalXP += xp;
+    progress += xp;
+
+    calcProgressBar();
+    totalXPText.textContent = totalXP;
+    totalLevelText.textContent = level;
+    progressBar.style.width = `${progress}%`;
+    checkLevel(level);
+}
+
+
+// ---------- 🔄 Reset List 🔄 --------------
+function resetList() {
+    window.location.reload();
 }
