@@ -432,6 +432,15 @@ smallModalBtnMain.addEventListener('click', () => {
             addToDo();
             updateInfo();
         }
+    } else if (settingsModalBox.classList.contains('edit-item-active')) {
+        if (smallModalInput.value != '') {
+            // Edit Item
+            itemToEdit.textContent = smallModalInput.value;
+            editClicks++;
+            settingsModalBox.classList.remove('edit-item-active');
+            closeSettingsInnerModal();
+            updateInfo();
+        }
     } else if (settingsModalBox.classList.contains('delete-item-active')) {
         // Delete Item
         if (targetItem.classList.contains('item-priority')) {
@@ -481,6 +490,15 @@ document.addEventListener('keydown', (e) => {
                 // Add Item to List (Small Screen)
                 if (smallModalInput.value !== '') {
                     addToDo();
+                    updateInfo();
+                }
+            } else if (settingsModalBox.classList.contains('edit-item-active')) {
+                if (smallModalInput.value != '') {
+                    // Edit Item
+                    itemToEdit.textContent = smallModalInput.value;
+                    editClicks++;
+                    settingsModalBox.classList.remove('edit-item-active');
+                    closeSettingsInnerModal();
                     updateInfo();
                 }
             } else if (settingsModalBox.classList.contains('delete-item-active')) {
@@ -703,6 +721,21 @@ function prioritiseToDoItem(item, icon) {
     }
 }
 
+function openEditItemModal() {
+    openSettingsInnerModal();
+    smallModalHeader.innerHTML = '<span class="highlight">Edit</span> Your To-Do Item';
+    smallModalP1.innerHTML = 'You can edit your to-do item below:';
+    smallModalP2.style.display = 'none';
+    smallModalInput.style.display = 'flex';
+    smallModalInput.placeholder = 'Edit Your To-Do Item...';
+    smallModalInput.value = itemToEdit.textContent;
+    smallModalBtnMain.classList.remove('btn-negative');
+    smallModalBtnMain.classList.add('btn-primary');
+    smallModalBtnMain.textContent = 'Edit';
+
+    settingsModalBox.classList.add('edit-item-active');
+}
+
 function openDeleteItemModal() {
     openSettingsInnerModal();
     smallModalHeader.innerHTML = '<span class="highlight-negative">Delete</span> Your To-Do Item?';
@@ -728,10 +761,16 @@ function checkClickedIcon(e) {
     } else if (clickedIcon.id === 'prioritiseIcon') {
         prioritiseToDoItem(clickedToDoItem, clickedIcon);
     } else if (clickedIcon.id === 'editIcon') {
-
+        if (clickedToDoItem.classList.contains('item-complete')) {
+            // Nothing happens
+        } else {
+            targetItem = clickedToDoItem;
+            itemToEdit = clickedToDoItem.querySelector('.content-text--to-do');
+            openEditItemModal();
+        }
     } else if (clickedIcon.id === 'removeIcon') {
-        openDeleteItemModal();
         targetItem = clickedToDoItem;
+        openDeleteItemModal();
     }
 }
 
