@@ -1,4 +1,4 @@
-<img width="1304" alt="Final To-Do List Screenshot" src="https://user-images.githubusercontent.com/80458000/147425532-655cc55f-00a2-47d0-9870-6d24aab0a65d.png">
+![List Screenshots](https://user-images.githubusercontent.com/80458000/147425924-a54f3ab6-10ff-4f76-8342-047d43f3c368.png)
 
 ### JavaScript To-Do List
 
