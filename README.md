@@ -1,3 +1,5 @@
+<img width="1304" alt="Final To-Do List Screenshot" src="https://user-images.githubusercontent.com/80458000/147425532-655cc55f-00a2-47d0-9870-6d24aab0a65d.png">
+
 ### JavaScript To-Do List
 
 📝 This is an attempt to make a more advanced to-do list using HTML, CSS, and JavaScript to include in my portfolio. 
