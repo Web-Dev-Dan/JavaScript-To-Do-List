@@ -620,6 +620,7 @@ function createNewToDo(listContent) {
     createClicks++;
     listedTodos++;
     updateProgress(5);
+    updateInfo();
 
     const toDoItemContainer = document.querySelector('.to-do-item-container');
 
