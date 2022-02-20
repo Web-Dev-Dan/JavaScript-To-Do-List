@@ -1,12 +1,12 @@
 ![List Screenshots](https://user-images.githubusercontent.com/80458000/147425924-a54f3ab6-10ff-4f76-8342-047d43f3c368.png)
 
-<p align="center">
-<img alt="HTML5" src="https://img.shields.io/badge/html5-%23325288.svg?style=for-the-badge&logo=html5&logoColor=ffffff"/>
-<img alt="CSS3" src="https://img.shields.io/badge/css3-%23476dad.svg?style=for-the-badge&logo=css3&logoColor=ffffff"/>
-<img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23325288.svg?style=for-the-badge&logo=javascript&logoColor=ffffff"/>
-</p>
-
 ### JavaScript To-Do List
+
+<p align="center">
+  <img alt="HTML5" src="https://img.shields.io/badge/html5-%23325288.svg?style=for-the-badge&logo=html5&logoColor=ffffff"/>
+  <img alt="CSS3" src="https://img.shields.io/badge/css3-%23476dad.svg?style=for-the-badge&logo=css3&logoColor=ffffff"/>
+  <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23325288.svg?style=for-the-badge&logo=javascript&logoColor=ffffff"/>
+</p>
 
 📝 This is an attempt to make a more advanced to-do list using HTML, CSS, and JavaScript to include in my portfolio. 
 
